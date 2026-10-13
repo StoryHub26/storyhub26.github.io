@@ -1,0 +1,744 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Story Website</title>
+    <meta name="description" content="Discover exciting stories, one chapter at a time.">
+
+    <style>
+        /* BASIC SETTINGS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 85px;
+        }
+
+        body {
+            background: #080b10;
+            color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button, input {
+            font: inherit;
+        }
+
+        button, a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --bg: #080b10;
+            --panel: #111722;
+            --gold: #ffbd4a;
+            --text: #f5f5f5;
+            --muted: #aeb6c4;
+            --border: #293241;
+        }
+
+        .container {
+            width: min(1120px, 90%);
+            margin: auto;
+        }
+
+        /* HEADER */
+
+        header {
+            background: rgba(8, 11, 16, 0.97);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            min-height: 76px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            color: var(--gold);
+            font-size: 25px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold);
+        }
+
+        .menu-btn {
+            display: none;
+            background: transparent;
+            color: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        /* HERO SECTION */
+
+        .hero {
+            min-height: 490px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(
+                    ellipse at 80% 45%,
+                    rgba(133, 69, 32, 0.45),
+                    transparent 45%
+                ),
+                linear-gradient(
+                    120deg,
+                    #080b10 20%,
+                    #17202c 65%,
+                    #302018
+                );
+        }
+
+        .hero-content {
+            padding-top: 70px;
+            padding-bottom: 70px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .hero h1 {
+            max-width: 720px;
+            font-family: Georgia, serif;
+            font-size: clamp(38px, 6vw, 68px);
+            line-height: 1.12;
+            margin: 20px 0;
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+        }
+
+        .hero p {
+            max-width: 570px;
+            color: var(--muted);
+            font-size: 17px;
+            margin-bottom: 26px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--gold);
+            color: #111;
+            padding: 13px 23px;
+            border-radius: 7px;
+            font-weight: bold;
+            transition: 0.25s;
+        }
+
+        .btn:hover {
+            background: #ffd584;
+            transform: translateY(-2px);
+        }
+
+        .outline-btn {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+        }
+
+        .outline-btn:hover {
+            background: var(--gold);
+            color: #111;
+        }
+
+        /* COMMON SECTIONS */
+
+        section {
+            padding: 65px 0;
+        }
+
+        .section-heading {
+            font-family: Georgia, serif;
+            font-size: clamp(27px, 4vw, 36px);
+            margin-bottom: 12px;
+        }
+
+        .section-description {
+            color: var(--muted);
+            max-width: 650px;
+            margin-bottom: 30px;
+        }
+
+        /* GENRES */
+
+        .genre-grid {
+            display: grid;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .genre-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            min-height: 115px;
+            padding: 20px 10px;
+            text-align: center;
+            transition: 0.25s;
+        }
+
+        .genre-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-4px);
+        }
+
+        .genre-icon {
+            display: block;
+            font-size: 27px;
+            margin-bottom: 8px;
+        }
+
+        .genre-card h3 {
+            font-size: 14px;
+        }
+
+        /* STORIES EMPTY STATE */
+
+        .stories-section {
+            background: #0c1018;
+            border-top: 1px solid #171e29;
+            border-bottom: 1px solid #171e29;
+        }
+
+        .empty-state {
+            background: var(--panel);
+            border: 1px dashed #3b4657;
+            border-radius: 14px;
+            padding: 55px 20px;
+            text-align: center;
+        }
+
+        .empty-icon {
+            font-size: 45px;
+            margin-bottom: 12px;
+        }
+
+        .empty-state h3 {
+            font-size: 23px;
+            margin-bottom: 10px;
+        }
+
+        .empty-state p {
+            color: var(--muted);
+            max-width: 480px;
+            margin: 0 auto 22px;
+        }
+
+        /* ABOUT */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 45px;
+        }
+
+        .about-visual {
+            min-height: 280px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255, 189, 74, 0.18),
+                    transparent 60%
+                ),
+                #111722;
+            font-size: 85px;
+        }
+
+        .about-text p {
+            color: var(--muted);
+            margin: 15px 0 22px;
+        }
+
+        .feature {
+            margin: 12px 0;
+            color: #e7eaf0;
+        }
+
+        .feature span {
+            color: var(--gold);
+            margin-right: 8px;
+        }
+
+        /* CONTACT */
+
+        .contact-box {
+            padding: 35px;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            text-align: center;
+        }
+
+        .contact-box p {
+            color: var(--muted);
+            margin: 10px 0 22px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #06080c;
+            border-top: 1px solid var(--border);
+            padding: 28px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-content p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .back-top {
+            color: var(--gold);
+        }
+
+        /* TABLET */
+
+        @media (max-width: 850px) {
+            .genre-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .about-visual {
+                min-height: 220px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+            .container {
+                width: 92%;
+            }
+
+            .navbar {
+                min-height: 66px;
+                flex-wrap: wrap;
+                padding: 13px 0;
+            }
+
+            .logo {
+                font-size: 21px;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 8px 0;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 12px 5px;
+                border-top: 1px solid #202734;
+            }
+
+            .hero {
+                min-height: 430px;
+            }
+
+            .hero-content {
+                padding-top: 55px;
+                padding-bottom: 55px;
+            }
+
+            .hero h1 {
+                font-size: 39px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            section {
+                padding: 45px 0;
+            }
+
+            .genre-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+            }
+
+            .genre-card {
+                min-height: 100px;
+                padding: 15px 7px;
+            }
+
+            .empty-state {
+                padding: 40px 16px;
+            }
+
+            .empty-state h3 {
+                font-size: 20px;
+            }
+
+            .contact-box {
+                padding: 26px 17px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *, *::before, *::after {
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container navbar">
+
+            <a href="#home" class="logo">
+                <span>MY</span> STORIES.
+            </a>
+
+            <button
+                class="menu-btn"
+                id="menuBtn"
+                aria-expanded="false"
+                aria-controls="navLinks"
+                aria-label="Open navigation menu">
+                ☰ Menu
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="#home" class="active">Home</a>
+                <a href="#genres">Genres</a>
+                <a href="#stories">Stories</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+        </div>
+    </header>
+
+    <main>
+
+        <!-- HERO -->
+        <section class="hero" id="home">
+            <div class="container hero-content">
+
+                <div class="eyebrow">
+                    A World of Imagination
+                </div>
+
+                <h1>
+                    Every Story Has<br>
+                    <span>A New Beginning.</span>
+                </h1>
+
+                <p>
+                    Unakku pidicha stories-ai discover pannu.
+                    Crime, romance, mystery, fantasy nu
+                    pala worlds-kulla travel pannu.
+                    Un next favourite story inga start aagattum.
+                </p>
+
+                <a href="#stories" class="btn">
+                    Explore Stories →
+                </a>
+
+            </div>
+        </section>
+
+        <!-- GENRES -->
+        <section id="genres">
+            <div class="container">
+
+                <h2 class="section-heading">
+                    Explore Genres
+                </h2>
+
+                <p class="section-description">
+                    Un mood-ku etha story category-ai choose pannu.
+                </p>
+
+                <div class="genre-grid">
+
+                    <a href="#stories" class="genre-card">
+                        <span class="genre-icon">🔍</span>
+                        <h3>Crime & Thriller</h3>
+                    </a>
+
+                    <a href="#stories" class="genre-card">
+                        <span class="genre-icon">❤️</span>
+                        <h3>Romance</h3>
+                    </a>
+
+                    <a href="#stories" class="genre-card">
+                        <span class="genre-icon">🐉</span>
+                        <h3>Fantasy</h3>
+                    </a>
+
+                    <a href="#stories" class="genre-card">
+                        <span class="genre-icon">👁️</span>
+                        <h3>Mystery</h3>
+                    </a>
+
+                    <a href="#stories" class="genre-card">
+                        <span class="genre-icon">⚔️</span>
+                        <h3>Adventure</h3>
+                    </a>
+
+                    <a href="#stories" class="genre-card">
+                        <span class="genre-icon">😂</span>
+                        <h3>Comedy</h3>
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- STORIES -->
+        <section class="stories-section" id="stories">
+            <div class="container">
+
+                <h2 class="section-heading">
+                    Stories
+                </h2>
+
+                <p class="section-description">
+                    Pudhu stories seekiram inga varum.
+                    Engaloda story world-ai explore panna ready-ah iru!
+                </p>
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">📚</div>
+
+                    <h3>Our First Story Is Coming Soon</h3>
+
+                    <p>
+                        Stories are being prepared.
+                        Seekiram pudhu characters, unexpected twists,
+                        unforgettable adventures ellam inga varum.
+                    </p>
+
+                    <a href="#about" class="btn outline-btn">
+                        About This Website
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about">
+            <div class="container about-grid">
+
+                <div class="about-visual" aria-hidden="true">
+                    📖
+                </div>
+
+                <div class="about-text">
+
+                    <div class="eyebrow">Our World</div>
+
+                    <h2 class="section-heading">
+                        More Than Just Stories
+                    </h2>
+
+                    <p>
+                        Idhu stories-ai virumbura readers-kaana
+                        oru pudhu platform. Different genres,
+                        interesting characters, unexpected twists
+                        ellathaiyum ore place-la kondu vara
+                        engaloda journey inga start aagudhu.
+                    </p>
+
+                    <div class="feature">
+                        <span>✦</span> Multiple story genres
+                    </div>
+
+                    <div class="feature">
+                        <span>✦</span> Episode-by-episode reading
+                    </div>
+
+                    <div class="feature">
+                        <span>✦</span> Mobile and desktop friendly
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+            <div class="container">
+
+                <div class="contact-box">
+
+                    <h2 class="section-heading">
+                        Stay Connected
+                    </h2>
+
+                    <p>
+                        Questions, suggestions or feedback?
+                        Official contact details will be added here.
+                    </p>
+
+                    <!-- Add your official email or social link later -->
+
+                    <a href="#home" class="btn">
+                        Back to Home ↑
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+
+            <div class="logo">
+                <span>MY</span> STORIES.
+            </div>
+
+            <p>
+                © <span id="year"></span> My Stories.
+                All rights reserved.
+            </p>
+
+            <a href="#home" class="back-top">
+                Back to top ↑
+            </a>
+
+        </div>
+    </footer>
+
+
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const navLinks = document.getElementById("navLinks");
+
+        menuBtn.addEventListener("click", function () {
+            const isOpen = navLinks.classList.toggle("open");
+
+            menuBtn.setAttribute("aria-expanded", isOpen);
+            menuBtn.setAttribute(
+                "aria-label",
+                isOpen ? "Close navigation menu" : "Open navigation menu"
+            );
+        });
+
+
+        navLinks.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                navLinks.classList.remove("open");
+                menuBtn.setAttribute("aria-expanded", "false");
+            });
+        });
+
+        // Current year automatic-ah update aagum
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+    </script>
+
+</body>
+</html>
