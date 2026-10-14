@@ -5,639 +5,311 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Story Hub</title>
-<meta name="description" content="Story Hub - Your world of stories.">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <style>
-:root {
-  --bg: #0b0b0f;
-  --panel: #15151d;
-  --gold: #e8b85b;
-  --text: #f5f3ee;
-  --muted: #aaa8b4;
-  --border: #30303b;
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Arial, sans-serif;
-}
-button, input { font: inherit; }
-button { cursor: pointer; }
-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: rgba(11,11,15,.96);
-  border-bottom: 1px solid var(--border);
-}
-.nav {
-  max-width: 1150px;
-  margin: auto;
-  padding: 14px 22px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: var(--text);
-  font-size: 21px;
-  font-weight: 800;
-  letter-spacing: 1px;
-}
-.logo {
-  width: 43px;
-  height: 43px;
-  flex-shrink: 0;
-}
-.brand span { color: var(--gold); }
-.nav-actions {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-button, .button {
-  border: 1px solid var(--gold);
-  background: var(--gold);
-  color: #17120a;
-  padding: 10px 15px;
-  border-radius: 8px;
-  font-weight: 700;
-}
-button.secondary {
-  color: var(--text);
-  background: transparent;
-  border-color: var(--border);
-}
-button:hover { opacity: .85; }
-main {
-  max-width: 1100px;
-  margin: auto;
-  padding: 28px 22px 65px;
-}
-.hero {
-  min-height: 310px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 35px 15px;
-  border: 1px solid #4a3921;
-  border-radius: 22px;
-  background:
-    radial-gradient(ellipse at center, #352716 0%, #19151a 42%, #101016 78%);
-}
-.hero-logo {
-  width: 90px;
-  height: 90px;
-  margin-bottom: 10px;
-}
-.eyebrow {
-  color: var(--gold);
-  letter-spacing: 4px;
-  font-size: 12px;
-  font-weight: bold;
-}
-h1 {
-  font-size: clamp(35px, 7vw, 60px);
-  margin: 12px 0;
-}
-h1 span { color: var(--gold); }
-.hero p {
-  color: var(--muted);
-  max-width: 520px;
-  line-height: 1.7;
-}
-.section { margin-top: 35px; }
-.section-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-h2 { font-size: 24px; margin: 0 0 15px; }
-.muted { color: var(--muted); line-height: 1.6; }
-.search {
-  width: 100%;
-  max-width: 330px;
-  padding: 12px 14px;
-  color: var(--text);
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  outline: none;
-}
-.empty {
-  border: 1px dashed #49434a;
-  border-radius: 15px;
-  padding: 35px 20px;
-  text-align: center;
-  background: #111117;
-}
-.empty-symbol { font-size: 35px; margin-bottom: 12px; }
-.empty h3 { margin: 5px 0 10px; }
-.card {
-  padding: 22px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 13px;
-  margin-top: 15px;
-}
-.hidden { display: none !important; }
-.field { margin: 14px 0; }
-.field label {
-  display: block;
-  margin-bottom: 7px;
-  color: var(--muted);
-  font-size: 14px;
-}
-.field input {
-  width: 100%;
-  padding: 12px;
-  color: var(--text);
-  background: #0d0d13;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-}
-.profile-row {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-.avatar {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--gold);
-  background: #29232b;
-}
-#status {
-  color: var(--gold);
-  min-height: 22px;
-  overflow-wrap: anywhere;
-}
-footer {
-  border-top: 1px solid var(--border);
-  text-align: center;
-  padding: 25px 15px;
-  color: var(--muted);
-  font-size: 13px;
-}
-a { color: var(--gold); }
-@media (max-width: 520px) {
-  .nav { padding: 12px; }
-  .brand { font-size: 16px; gap: 6px; }
-  .logo { width: 35px; height: 35px; }
-  .nav-actions { gap: 6px; }
-  .nav-actions button { padding: 9px; font-size: 12px; }
-  main { padding: 18px 13px 45px; }
-  .hero { min-height: 280px; }
-}
+:root{--bg:#0b0b0f;--panel:#15151d;--gold:#e8b85b;--text:#f5f3ee;--muted:#aaa8b4;--border:#30303b}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
+button,input{font:inherit}
+button{cursor:pointer;background:var(--gold);color:#17120a;border:1px solid var(--gold);border-radius:8px;padding:10px 14px;font-weight:bold}
+button.secondary{background:transparent;color:var(--text);border-color:var(--border)}
+button:hover{opacity:.86}
+header{position:sticky;top:0;z-index:10;background:#0b0b0ff5;border-bottom:1px solid var(--border)}
+nav{max-width:1100px;margin:auto;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:8px;color:var(--text);text-decoration:none;font-size:20px;font-weight:800;letter-spacing:1px}
+.brand span{color:var(--gold)}
+.logo{width:43px;height:43px}
+.nav-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+main{max-width:1100px;margin:auto;padding:24px 18px 55px}
+.hero{padding:35px 18px;min-height:300px;border:1px solid #4a3921;border-radius:20px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(ellipse at center,#352716,#19151a 50%,#101016)}
+.hero-logo{width:82px;height:82px}
+.eyebrow{font-size:12px;letter-spacing:4px;color:var(--gold);font-weight:bold;margin-top:12px}
+h1{font-size:clamp(34px,7vw,58px);margin:12px 0}
+h1 span{color:var(--gold)}
+p{line-height:1.65}
+.muted{color:var(--muted)}
+.hero p{max-width:530px;color:var(--muted)}
+.section{margin-top:34px}
+.heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+h2{font-size:24px;margin:0}
+.search,.field input{width:100%;max-width:320px;padding:12px;color:var(--text);background:var(--panel);border:1px solid var(--border);border-radius:8px}
+.genres{display:flex;gap:9px;flex-wrap:wrap;margin:18px 0 22px}
+.genre{background:var(--panel);color:var(--muted);border-color:var(--border);border-radius:22px;padding:9px 15px}
+.genre.active{background:var(--gold);color:#17120a;border-color:var(--gold)}
+.story-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.story-card,.card{background:var(--panel);border:1px solid var(--border);border-radius:13px;padding:18px}
+.story-card h3{margin:0 0 8px;overflow-wrap:anywhere}
+.tag{display:inline-block;color:var(--gold);border:1px solid #66502c;border-radius:20px;padding:5px 9px;font-size:12px;margin-bottom:10px}
+.empty{text-align:center;padding:32px 16px;border:1px dashed #49434a;border-radius:14px;background:#111117}
+.empty-icon{font-size:35px}
+.hidden{display:none!important}
+.field{margin:15px 0}
+.field label{display:block;margin-bottom:7px;color:var(--muted)}
+.field input{max-width:none}
+.profile{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.avatar{width:68px;height:68px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);background:#29232b}
+#status{color:var(--gold);min-height:22px;overflow-wrap:anywhere}
+footer{text-align:center;padding:24px;border-top:1px solid var(--border);color:var(--muted);font-size:13px}
+@media(max-width:700px){.story-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:500px){nav{padding:10px}.brand{font-size:15px;gap:4px}.logo{width:34px;height:34px}.nav-actions{gap:5px}.nav-actions button{font-size:11px;padding:8px}main{padding:16px 12px 40px}.story-grid{grid-template-columns:1fr}.search{max-width:none}}
 </style>
 </head>
-
 <body>
-<header>
-  <nav class="nav">
-    <a class="brand" href="#home" aria-label="Story Hub home">
-      <!-- Story Hub logo is built into this HTML -->
-      <svg class="logo" viewBox="0 0 100 100" role="img" aria-label="Story Hub logo">
-        <defs>
-          <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#ffe6a1"/>
-            <stop offset="100%" stop-color="#d99a35"/>
-          </linearGradient>
-        </defs>
-        <path d="M50 4 L91 27 L91 73 L50 96 L9 73 L9 27 Z"
-          fill="#15151d" stroke="url(#gold)" stroke-width="4"/>
-        <path d="M24 29 Q37 24 49 34 L49 72 Q36 63 24 68 Z"
-          fill="url(#gold)"/>
-        <path d="M76 29 Q63 24 51 34 L51 72 Q64 63 76 68 Z"
-          fill="url(#gold)"/>
-        <path d="M50 34 L50 73" stroke="#80551d" stroke-width="2"/>
-        <path d="M31 39 L42 42 M31 47 L42 50 M58 42 L69 39 M58 50 L69 47"
-          stroke="#80551d" stroke-width="2" stroke-linecap="round"/>
-        <path d="M34 18 L50 10 L66 18" fill="none"
-          stroke="#ffe6a1" stroke-width="2"/>
-      </svg>
-      STORY <span>HUB</span>
-    </a>
 
-    <div class="nav-actions">
-      <button class="secondary" onclick="goToStories()">Stories</button>
-      <button id="loginButton" onclick="loginWithGoogle()">Google Login</button>
-      <button id="accountButton" class="secondary hidden"
-        onclick="showAccount()">My Account</button>
-    </div>
-  </nav>
+<header>
+<nav>
+<a href="#home" class="brand">
+<svg class="logo" viewBox="0 0 100 100" role="img" aria-label="Story Hub logo">
+<defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe6a1"/><stop offset="1" stop-color="#d99a35"/></linearGradient></defs>
+<path d="M50 4 91 27 91 73 50 96 9 73 9 27Z" fill="#15151d" stroke="url(#lg)" stroke-width="4"/>
+<path d="M24 29Q37 24 49 34V72Q36 63 24 68Z" fill="url(#lg)"/>
+<path d="M76 29Q63 24 51 34V72Q64 63 76 68Z" fill="url(#lg)"/>
+<path d="M50 34V73M31 39 42 42M31 47 42 50M58 42 69 39M58 50 69 47" stroke="#80551d" stroke-width="2" fill="none"/>
+</svg>
+STORY <span>HUB</span>
+</a>
+<div class="nav-actions">
+<button class="secondary" onclick="go('stories')">Stories</button>
+<button class="secondary" onclick="go('wishlist')">Wishlist</button>
+<button id="loginButton" onclick="login()">Google Login</button>
+<button id="accountButton" class="hidden" onclick="go('account')">My Account</button>
+</div>
+</nav>
 </header>
 
 <main id="home">
-  <section class="hero">
-    <svg class="hero-logo" viewBox="0 0 100 100" role="img" aria-label="Story Hub logo">
-      <defs>
-        <linearGradient id="heroGold" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#ffe6a1"/>
-          <stop offset="100%" stop-color="#d99a35"/>
-        </linearGradient>
-      </defs>
-      <path d="M50 4 L91 27 L91 73 L50 96 L9 73 L9 27 Z"
-        fill="#15151d" stroke="url(#heroGold)" stroke-width="4"/>
-      <path d="M24 29 Q37 24 49 34 L49 72 Q36 63 24 68 Z"
-        fill="url(#heroGold)"/>
-      <path d="M76 29 Q63 24 51 34 L51 72 Q64 63 76 68 Z"
-        fill="url(#heroGold)"/>
-      <path d="M50 34 L50 73" stroke="#80551d" stroke-width="2"/>
-      <path d="M31 39 L42 42 M31 47 L42 50 M58 42 L69 39 M58 50 L69 47"
-        stroke="#80551d" stroke-width="2" stroke-linecap="round"/>
-    </svg>
-    <div class="eyebrow">YOUR WORLD · YOUR STORIES</div>
-    <h1>Welcome to <span>Story Hub</span></h1>
-    <p>A home for stories, imagination and unforgettable adventures.
-      Your next favourite story begins here.</p>
-    <button onclick="goToStories()">Explore Stories</button>
-  </section>
+<section class="hero">
+<svg class="hero-logo" viewBox="0 0 100 100" role="img" aria-label="Story Hub logo">
+<defs><linearGradient id="lg2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe6a1"/><stop offset="1" stop-color="#d99a35"/></linearGradient></defs>
+<path d="M50 4 91 27 91 73 50 96 9 73 9 27Z" fill="#15151d" stroke="url(#lg2)" stroke-width="4"/>
+<path d="M24 29Q37 24 49 34V72Q36 63 24 68Z" fill="url(#lg2)"/>
+<path d="M76 29Q63 24 51 34V72Q64 63 76 68Z" fill="url(#lg2)"/>
+<path d="M50 34V73M31 39 42 42M31 47 42 50M58 42 69 39M58 50 69 47" stroke="#80551d" stroke-width="2" fill="none"/>
+</svg>
+<div class="eyebrow">YOUR WORLD · YOUR STORIES</div>
+<h1>Welcome to <span>Story Hub</span></h1>
+<p>Discover new worlds, unforgettable characters and stories written to keep your imagination alive.</p>
+<button onclick="go('stories')">Explore Stories</button>
+</section>
 
-  <section class="section" id="stories">
-    <div class="section-heading">
-      <h2>Explore Stories</h2>
-      <input id="searchInput" class="search" type="search"
-        placeholder="Search stories..." aria-label="Search stories"
-        oninput="filterStories()">
-    </div>
+<section class="section" id="stories">
+<div class="heading">
+<h2>Explore Stories</h2>
+<input class="search" id="search" type="search" placeholder="Search stories..." oninput="renderStories()">
+</div>
+<div class="genres" id="genres">
+<button class="genre active" data-genre="All" onclick="chooseGenre('All')">All</button>
+<button class="genre" data-genre="Horror" onclick="chooseGenre('Horror')">Horror</button>
+<button class="genre" data-genre="Romance" onclick="chooseGenre('Romance')">Romance</button>
+<button class="genre" data-genre="Thriller" onclick="chooseGenre('Thriller')">Thriller</button>
+<button class="genre" data-genre="Fantasy" onclick="chooseGenre('Fantasy')">Fantasy</button>
+<button class="genre" data-genre="Action" onclick="chooseGenre('Action')">Action</button>
+<button class="genre" data-genre="Comedy" onclick="chooseGenre('Comedy')">Comedy</button>
+</div>
+<div class="story-grid" id="storyGrid"></div>
+<div class="empty" id="emptyStories">
+<div class="empty-icon">📚</div>
+<h3 id="emptyTitle">No stories uploaded yet</h3>
+<p class="muted" id="emptyText">Your stories will appear here when you add them.</p>
+</div>
+</section>
 
-    <div id="storyGrid"></div>
-    <div id="noStories" class="empty">
-      <div class="empty-symbol">📚</div>
-      <h3>No stories uploaded yet</h3>
-      <p class="muted">Our story collection is getting ready.
-        Please check back soon!</p>
-    </div>
-  </section>
+<section class="section" id="wishlist">
+<div class="heading"><h2>My Wishlist</h2><button class="secondary" onclick="loadWishlist()">Refresh</button></div>
+<div class="card"><div id="wishlistContent" class="muted">Sign in with Google to manage your wishlist.</div></div>
+</section>
 
-  <section class="section" id="accountSection">
-    <h2>My Account</h2>
-    <div class="card">
-      <div id="signedOut">
-        <p class="muted">Sign in with Google to set up your profile
-          and save your favourite stories.</p>
-        <button onclick="loginWithGoogle()">Continue with Google</button>
-      </div>
-
-      <div id="signedIn" class="hidden">
-        <div class="profile-row">
-          <img id="avatar" class="avatar"
-            alt="Profile picture"
-            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='70'%3E%3Crect width='100%25' height='100%25' fill='%2329232b'/%3E%3Ccircle cx='35' cy='25' r='13' fill='%23e8b85b'/%3E%3Cpath d='M10 70 Q12 43 35 43 Q58 43 60 70' fill='%23e8b85b'/%3E%3C/svg%3E">
-          <div>
-            <strong id="displayName">Your profile</strong>
-            <p id="userEmail" class="muted"></p>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="username">Username</label>
-          <input id="username" type="text" maxlength="30"
-            placeholder="Choose a username">
-        </div>
-        <button onclick="saveProfile()">Save Username</button>
-
-        <div class="field">
-          <label for="avatarFile">Profile picture</label>
-          <input id="avatarFile" type="file" accept="image/*">
-        </div>
-        <button class="secondary" onclick="uploadAvatar()">Upload Picture</button>
-
-        <div class="section">
-          <h2>Saved Stories</h2>
-          <p class="muted">Your saved stories will appear here.
-            There are no stories to save yet.</p>
-          <div id="savedStories"></div>
-        </div>
-
-        <button class="secondary" onclick="logout()">Sign Out</button>
-      </div>
-      <p id="status" role="status" aria-live="polite"></p>
-    </div>
-  </section>
+<section class="section" id="account">
+<h2>My Account</h2>
+<div class="card" style="margin-top:15px">
+<div id="signedOut">
+<p class="muted">Sign in to update your username, profile picture and wishlist.</p>
+<button onclick="login()">Continue with Google</button>
+</div>
+<div id="signedIn" class="hidden">
+<div class="profile">
+<img id="avatar" class="avatar" alt="Profile picture" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 70 70'%3E%3Crect width='70' height='70' fill='%2329232b'/%3E%3Ccircle cx='35' cy='24' r='13' fill='%23e8b85b'/%3E%3Cpath d='M8 70Q10 43 35 43Q60 43 62 70' fill='%23e8b85b'/%3E%3C/svg%3E">
+<div><strong id="displayName">Your profile</strong><p id="email" class="muted"></p></div>
+</div>
+<div class="field"><label for="username">Username</label><input id="username" maxlength="30" placeholder="Choose a username"></div>
+<button onclick="saveProfile()">Save Username</button>
+<div class="field"><label for="avatarFile">Profile picture</label><input type="file" id="avatarFile" accept="image/*"></div>
+<button class="secondary" onclick="uploadAvatar()">Upload Picture</button>
+<p><button class="secondary" onclick="logout()">Sign Out</button></p>
+</div>
+<p id="status" role="status" aria-live="polite"></p>
+</div>
+</section>
 </main>
-
-<footer>
-  <p>© <span id="year"></span> Story Hub. All rights reserved.</p>
-</footer>
+<footer>© <span id="year"></span> Story Hub. All rights reserved.</footer>
 
 <script>
-const SUPABASE_URL = "https://jaypsuwcygjhmggezsvv.supabase.co";
-const SUPABASE_KEY = "sb_publishable_c4jMND6RFwNApkZGW5tz6A_srEsf-i4";
+const SUPABASE_URL="https://jaypsuwcygjhmggezsvv.supabase.co";
+const SUPABASE_KEY="sb_publishable_c4jMND6RFwNApkZGW5tz6A_srEsf-i4";
+const stories=[];
+let db=null,user=null,activeGenre="All";
 
-const stories = [];
+document.getElementById("year").textContent=new Date().getFullYear();
 
-let supabaseClient = null;
-let currentUser = null;
+function status(message){document.getElementById("status").textContent=message}
+function go(id){document.getElementById(id).scrollIntoView({behavior:"smooth"})}
 
-document.getElementById("year").textContent = new Date().getFullYear();
-
-if (window.supabase && SUPABASE_URL && SUPABASE_KEY) {
-  supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
-
-  startApp();
-} else {
-  setStatus("Unable to load the login service. Check your internet connection.");
+function chooseGenre(genre){
+ activeGenre=genre;
+ document.querySelectorAll(".genre").forEach(b=>b.classList.toggle("active",b.dataset.genre===genre));
+ renderStories();
 }
 
-function setStatus(message) {
-  document.getElementById("status").textContent = message;
+function renderStories(){
+ const query=document.getElementById("search").value.trim().toLowerCase();
+ const grid=document.getElementById("storyGrid");
+ grid.replaceChildren();
+ const filtered=stories.filter(s=>(activeGenre==="All"||s.genre===activeGenre)&&
+ (s.title+" "+s.description+" "+s.genre).toLowerCase().includes(query));
+ filtered.forEach(s=>{
+  const card=document.createElement("article");card.className="story-card";
+  const tag=document.createElement("span");tag.className="tag";tag.textContent=s.genre;
+  const title=document.createElement("h3");title.textContent=s.title;
+  const desc=document.createElement("p");desc.className="muted";desc.textContent=s.description||"";
+  const btn=document.createElement("button");btn.textContent="♡ Add to Wishlist";btn.onclick=()=>addToWishlist(s);
+  card.append(tag,title,desc,btn);grid.append(card);
+ });
+ document.getElementById("emptyStories").classList.toggle("hidden",filtered.length>0);
+ document.getElementById("emptyTitle").textContent=stories.length?"No matching stories":"No stories uploaded yet";
+ document.getElementById("emptyText").textContent=stories.length?"Try a different genre or search term.":"Your stories will appear here when you add them.";
 }
 
-function goToStories() {
-  document.getElementById("stories").scrollIntoView({
-    behavior: "smooth"
-  });
+async function start(){
+ if(!window.supabase){status("Supabase library did not load. Check internet.");return}
+ db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+ const {data,error}=await db.auth.getSession();
+ if(error){status("Unable to check login session.");return}
+ user=data.session?.user||null;
+ await updateView();
+ db.auth.onAuthStateChange((_event,session)=>{
+  user=session?.user||null;
+  setTimeout(()=>updateView(),0);
+ });
 }
 
-function showAccount() {
-  document.getElementById("accountSection").scrollIntoView({
-    behavior: "smooth"
-  });
+async function login(){
+ if(!db){status("Login service is loading. Refresh and try again.");return}
+ status("Opening Google login...");
+ const {error}=await db.auth.signInWithOAuth({
+  provider:"google",
+  options:{redirectTo:location.origin+location.pathname}
+ });
+ if(error)status("Login error: "+error.message);
 }
 
-function filterStories() {
-  const query = document.getElementById("searchInput")
-    .value.trim().toLowerCase();
+async function updateView(){
+ const logged=!!user;
+ document.getElementById("loginButton").classList.toggle("hidden",logged);
+ document.getElementById("accountButton").classList.toggle("hidden",!logged);
+ document.getElementById("signedOut").classList.toggle("hidden",logged);
+ document.getElementById("signedIn").classList.toggle("hidden",!logged);
+ if(!logged){
+  document.getElementById("wishlistContent").textContent="Sign in with Google to manage your wishlist.";
+  return;
+ }
+ const meta=user.user_metadata||{};
+ document.getElementById("email").textContent=user.email||"";
+ document.getElementById("displayName").textContent=meta.full_name||meta.name||(user.email||"Reader").split("@")[0];
+ if(meta.avatar_url||meta.picture)document.getElementById("avatar").src=meta.avatar_url||meta.picture;
 
-  const matches = stories.filter(story =>
-    story.title.toLowerCase().includes(query)
-  );
-
-  document.getElementById("storyGrid").innerHTML = "";
-
-  document.getElementById("noStories").classList.toggle(
-    "hidden",
-    matches.length > 0
-  );
+ const {data:profile,error}=await db.from("profiles").select("username,avatar_url").eq("id",user.id).maybeSingle();
+ if(error){status("Profile could not load. Check profiles table and policies.");}
+ else if(profile){
+  document.getElementById("username").value=profile.username||"";
+  if(profile.username)document.getElementById("displayName").textContent=profile.username;
+  if(profile.avatar_url)document.getElementById("avatar").src=profile.avatar_url;
+ }
+ await loadWishlist();
 }
 
-async function startApp() {
-  const { data, error } = await supabaseClient.auth.getSession();
-
-  if (error) {
-    setStatus("Could not check your login session. Please refresh.");
-    return;
-  }
-
-  currentUser = data.session ? data.session.user : null;
-  await updateLoginView();
-
-  supabaseClient.auth.onAuthStateChange((_event, session) => {
-    currentUser = session ? session.user : null;
-
-    setTimeout(() => {
-      updateLoginView();
-    }, 0);
-  });
+async function saveProfile(){
+ if(!user){status("Please sign in first.");return}
+ const username=document.getElementById("username").value.trim();
+ if(username.length<3){status("Username must have at least 3 characters.");return}
+ const {error}=await db.from("profiles").upsert({
+  id:user.id,username,updated_at:new Date().toISOString()
+ },{onConflict:"id"});
+ if(error){status("Could not save username. Check profiles table and RLS policies.");return}
+ document.getElementById("displayName").textContent=username;
+ status("Username saved successfully!");
 }
 
-async function loginWithGoogle() {
-  if (!supabaseClient) {
-    setStatus("Login service is not ready. Refresh the page.");
-    return;
-  }
-
-  setStatus("Opening Google login...");
-
-  const { error } = await supabaseClient.auth.signInWithOAuth({
-    provider: "google",
-    options: {
-      redirectTo: window.location.origin + window.location.pathname
-    }
-  });
-
-  if (error) {
-    setStatus("Login error: " + error.message);
-  }
+async function uploadAvatar(){
+ if(!user){status("Please sign in first.");return}
+ const file=document.getElementById("avatarFile").files[0];
+ if(!file){status("Please select a picture.");return}
+ if(!file.type.startsWith("image/")){status("Select a valid image.");return}
+ if(file.size>3*1024*1024){status("Image must be smaller than 3 MB.");return}
+ const ext=file.name.split(".").pop().toLowerCase();
+ const path=user.id+"/avatar-"+Date.now()+"."+ext;
+ status("Uploading picture...");
+ const {error:upError}=await db.storage.from("avatars").upload(path,file,{upsert:true,contentType:file.type});
+ if(upError){status("Upload failed. Check avatars bucket and storage policies.");return}
+ const {data}=db.storage.from("avatars").getPublicUrl(path);
+ const {error}=await db.from("profiles").upsert({
+  id:user.id,avatar_url:data.publicUrl,updated_at:new Date().toISOString()
+ },{onConflict:"id"});
+ if(error){status("Picture uploaded, but profile update failed.");return}
+ document.getElementById("avatar").src=data.publicUrl;
+ status("Profile picture updated!");
 }
 
-async function updateLoginView() {
-  const isLoggedIn = Boolean(currentUser);
-
-  document.getElementById("loginButton").classList.toggle(
-    "hidden", isLoggedIn
-  );
-  document.getElementById("accountButton").classList.toggle(
-    "hidden", !isLoggedIn
-  );
-  document.getElementById("signedOut").classList.toggle(
-    "hidden", isLoggedIn
-  );
-  document.getElementById("signedIn").classList.toggle(
-    "hidden", !isLoggedIn
-  );
-
-  if (!isLoggedIn) {
-    document.getElementById("savedStories").textContent = "";
-    return;
-  }
-
-  const metadata = currentUser.user_metadata || {};
-  document.getElementById("userEmail").textContent =
-    currentUser.email || "";
-
-  const fallbackName = metadata.full_name ||
-    metadata.name || (currentUser.email || "Reader").split("@")[0];
-
-  document.getElementById("displayName").textContent = fallbackName;
-
-  const picture = metadata.avatar_url || metadata.picture;
-  if (picture) {
-    document.getElementById("avatar").src = picture;
-  }
-
-  const { data: profile, error } = await supabaseClient
-    .from("profiles")
-    .select("username, avatar_url")
-    .eq("id", currentUser.id)
-    .maybeSingle();
-
-  if (error) {
-    setStatus("You are logged in, but the profile table needs checking.");
-    return;
-  }
-
-  if (profile) {
-    document.getElementById("username").value = profile.username || "";
-    if (profile.avatar_url) {
-      document.getElementById("avatar").src = profile.avatar_url;
-    }
-    if (profile.username) {
-      document.getElementById("displayName").textContent =
-        profile.username;
-    }
-  }
-
-  await loadSavedStories();
+async function addToWishlist(story){
+ if(!user){status("Please sign in with Google to save stories.");await login();return}
+ const {error}=await db.from("saved_stories").upsert({
+  user_id:user.id,story_slug:story.slug,story_title:story.title
+ },{onConflict:"user_id,story_slug"});
+ if(error){status("Wishlist save failed. Check saved_stories table and RLS policies.");return}
+ status("Added to wishlist!");
+ await loadWishlist();
 }
 
-async function saveProfile() {
-  if (!currentUser) {
-    setStatus("Please sign in first.");
-    return;
-  }
-
-  const username = document.getElementById("username")
-    .value.trim();
-
-  if (!username) {
-    setStatus("Please enter a username.");
-    return;
-  }
-
-  if (username.length < 3) {
-    setStatus("Username must be at least 3 characters.");
-    return;
-  }
-
-  const { error } = await supabaseClient
-    .from("profiles")
-    .upsert({
-      id: currentUser.id,
-      username: username,
-      updated_at: new Date().toISOString()
-    }, { onConflict: "id" });
-
-  if (error) {
-    setStatus("Could not save username. Check your profiles table and policies.");
-    return;
-  }
-
-  document.getElementById("displayName").textContent = username;
-  setStatus("Username saved successfully!");
+async function removeFromWishlist(slug){
+ if(!user)return;
+ const {error}=await db.from("saved_stories").delete()
+  .eq("user_id",user.id).eq("story_slug",slug);
+ if(error){status("Could not remove story. Check table policies.");return}
+ status("Removed from wishlist.");
+ await loadWishlist();
 }
 
-async function uploadAvatar() {
-  if (!currentUser) {
-    setStatus("Please sign in first.");
-    return;
-  }
-
-  const file = document.getElementById("avatarFile").files[0];
-
-  if (!file) {
-    setStatus("Please choose a picture first.");
-    return;
-  }
-
-  if (!file.type.startsWith("image/")) {
-    setStatus("Please select an image file.");
-    return;
-  }
-
-  if (file.size > 3 * 1024 * 1024) {
-    setStatus("Please choose an image smaller than 3 MB.");
-    return;
-  }
-
-  const extension = file.name.split(".").pop().toLowerCase();
-  const path = currentUser.id + "/avatar-" + Date.now() + "." + extension;
-
-  setStatus("Uploading profile picture...");
-
-  const { error: uploadError } = await supabaseClient.storage
-    .from("avatars")
-    .upload(path, file, {
-      cacheControl: "3600",
-      upsert: true,
-      contentType: file.type
-    });
-
-  if (uploadError) {
-    setStatus("Upload failed. Check that the avatars bucket and its policies are configured.");
-    return;
-  }
-
-  const { data: publicData } = supabaseClient.storage
-    .from("avatars")
-    .getPublicUrl(path);
-
-  const avatarUrl = publicData.publicUrl;
-
-  const { error: profileError } = await supabaseClient
-    .from("profiles")
-    .upsert({
-      id: currentUser.id,
-      avatar_url: avatarUrl,
-      updated_at: new Date().toISOString()
-    }, { onConflict: "id" });
-
-  if (profileError) {
-    setStatus("Picture uploaded, but profile update failed. Check your policies.");
-    return;
-  }
-
-  document.getElementById("avatar").src = avatarUrl;
-  setStatus("Profile picture updated!");
+async function loadWishlist(){
+ const box=document.getElementById("wishlistContent");
+ if(!user){box.textContent="Sign in with Google to manage your wishlist.";return}
+ box.textContent="Loading wishlist...";
+ const {data,error}=await db.from("saved_stories")
+  .select("story_slug,story_title").eq("user_id",user.id)
+  .order("created_at",{ascending:false});
+ if(error){box.textContent="Wishlist could not load. Check saved_stories table and policies.";return}
+ box.replaceChildren();
+ if(!data||data.length===0){
+  box.textContent="Your wishlist is empty. Stories you save will appear here.";
+  return;
+ }
+ data.forEach(item=>{
+  const row=document.createElement("div");
+  row.style.cssText="padding:12px 0;border-bottom:1px solid #30303b;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap";
+  const title=document.createElement("span");title.textContent=item.story_title||item.story_slug;
+  const remove=document.createElement("button");remove.className="secondary";remove.textContent="Remove";
+  remove.onclick=()=>removeFromWishlist(item.story_slug);
+  row.append(title,remove);box.append(row);
+ });
 }
 
-async function loadSavedStories() {
-  if (!currentUser) return;
-
-  const container = document.getElementById("savedStories");
-  container.textContent = "";
-
-  const { data, error } = await supabaseClient
-    .from("saved_stories")
-    .select("story_slug, story_title")
-    .eq("user_id", currentUser.id)
-    .order("created_at", { ascending: false });
-
-  if (error) {
-    container.textContent =
-      "Saved stories could not be loaded. Check your table policies.";
-    return;
-  }
-
-  if (!data || data.length === 0) {
-    container.textContent = "You have not saved any stories yet.";
-    return;
-  }
-
-  data.forEach(item => {
-    const row = document.createElement("div");
-    row.className = "card";
-    row.textContent = item.story_title || item.story_slug;
-    container.appendChild(row);
-  });
+async function logout(){
+ const {error}=await db.auth.signOut();
+ if(error){status("Sign out failed.");return}
+ user=null;await updateView();status("Signed out.");
 }
 
-async function logout() {
-  if (!supabaseClient) return;
-
-  const { error } = await supabaseClient.auth.signOut();
-
-  if (error) {
-    setStatus("Sign out failed: " + error.message);
-    return;
-  }
-
-  currentUser = null;
-  await updateLoginView();
-  setStatus("Signed out successfully.");
-}
+renderStories();
+start();
 </script>
 </body>
 </html>
