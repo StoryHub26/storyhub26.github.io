@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,16 +9,9 @@
 
     <style>
         /* BASIC SETTINGS */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 85px;
-        }
+        html { scroll-behavior: smooth; scroll-padding-top: 85px; }
 
         body {
             background: #080b10;
@@ -28,18 +20,9 @@
             line-height: 1.6;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        button, input {
-            font: inherit;
-        }
-
-        button, a {
-            -webkit-tap-highlight-color: transparent;
-        }
+        a { text-decoration: none; color: inherit; }
+        button, input, textarea { font: inherit; }
+        button, a { -webkit-tap-highlight-color: transparent; }
 
         :root {
             --bg: #080b10;
@@ -50,13 +33,9 @@
             --border: #293241;
         }
 
-        .container {
-            width: min(1120px, 90%);
-            margin: auto;
-        }
+        .container { width: min(1120px, 90%); margin: auto; }
 
         /* HEADER */
-
         header {
             background: rgba(8, 11, 16, 0.97);
             border-bottom: 1px solid var(--border);
@@ -81,25 +60,13 @@
             white-space: nowrap;
         }
 
-        .logo span {
-            color: white;
-        }
+        .logo span { color: white; }
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
+        .nav-links { display: flex; align-items: center; gap: 25px; }
 
-        .nav-links a {
-            color: var(--muted);
-            transition: 0.3s;
-        }
+        .nav-links a { color: var(--muted); transition: 0.3s; }
 
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--gold);
-        }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
 
         .menu-btn {
             display: none;
@@ -112,7 +79,6 @@
         }
 
         /* HERO SECTION */
-
         .hero {
             min-height: 490px;
             display: flex;
@@ -120,17 +86,8 @@
             position: relative;
             overflow: hidden;
             background:
-                radial-gradient(
-                    ellipse at 80% 45%,
-                    rgba(133, 69, 32, 0.45),
-                    transparent 45%
-                ),
-                linear-gradient(
-                    120deg,
-                    #080b10 20%,
-                    #17202c 65%,
-                    #302018
-                );
+                radial-gradient(ellipse at 80% 45%, rgba(133, 69, 32, 0.45), transparent 45%),
+                linear-gradient(120deg, #080b10 20%, #17202c 65%, #302018);
         }
 
         .hero-content {
@@ -153,6 +110,7 @@
             text-shadow: 0 0 28px rgba(255, 189, 74, .20);
             margin-bottom: 22px;
         }
+
         .hero-brand span { color: var(--gold); }
         .hero .eyebrow { text-align: center; }
         .hero h1, .hero p { margin-left: auto; margin-right: auto; }
@@ -173,9 +131,7 @@
             margin: 20px 0;
         }
 
-        .hero h1 span {
-            color: var(--gold);
-        }
+        .hero h1 span { color: var(--gold); }
 
         .hero p {
             max-width: 570px;
@@ -195,12 +151,11 @@
             border-radius: 7px;
             font-weight: bold;
             transition: 0.25s;
+            border: none;
+            cursor: pointer;
         }
 
-        .btn:hover {
-            background: #ffd584;
-            transform: translateY(-2px);
-        }
+        .btn:hover { background: #ffd584; transform: translateY(-2px); }
 
         .outline-btn {
             background: transparent;
@@ -208,16 +163,10 @@
             border: 1px solid var(--gold);
         }
 
-        .outline-btn:hover {
-            background: var(--gold);
-            color: #111;
-        }
+        .outline-btn:hover { background: var(--gold); color: #111; }
 
         /* COMMON SECTIONS */
-
-        section {
-            padding: 65px 0;
-        }
+        section { padding: 65px 0; }
 
         .section-heading {
             font-family: Georgia, serif;
@@ -232,7 +181,6 @@
         }
 
         /* GENRES */
-
         .genre-grid {
             display: grid;
             grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -249,23 +197,11 @@
             transition: 0.25s;
         }
 
-        .genre-card:hover {
-            border-color: var(--gold);
-            transform: translateY(-4px);
-        }
+        .genre-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+        .genre-icon { display: block; font-size: 27px; margin-bottom: 8px; }
+        .genre-card h3 { font-size: 14px; }
 
-        .genre-icon {
-            display: block;
-            font-size: 27px;
-            margin-bottom: 8px;
-        }
-
-        .genre-card h3 {
-            font-size: 14px;
-        }
-
-        /* STORIES EMPTY STATE */
-
+        /* STORIES */
         .stories-section {
             background: #0c1018;
             border-top: 1px solid #171e29;
@@ -280,15 +216,8 @@
             text-align: center;
         }
 
-        .empty-icon {
-            font-size: 45px;
-            margin-bottom: 12px;
-        }
-
-        .empty-state h3 {
-            font-size: 23px;
-            margin-bottom: 10px;
-        }
+        .empty-icon { font-size: 45px; margin-bottom: 12px; }
+        .empty-state h3 { font-size: 23px; margin-bottom: 10px; }
 
         .empty-state p {
             color: var(--muted);
@@ -297,7 +226,6 @@
         }
 
         /* ABOUT */
-
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -313,32 +241,16 @@
             border-radius: 15px;
             border: 1px solid var(--border);
             background:
-                radial-gradient(
-                    circle,
-                    rgba(255, 189, 74, 0.18),
-                    transparent 60%
-                ),
+                radial-gradient(circle, rgba(255, 189, 74, 0.18), transparent 60%),
                 #111722;
             font-size: 85px;
         }
 
-        .about-text p {
-            color: var(--muted);
-            margin: 15px 0 22px;
-        }
-
-        .feature {
-            margin: 12px 0;
-            color: #e7eaf0;
-        }
-
-        .feature span {
-            color: var(--gold);
-            margin-right: 8px;
-        }
+        .about-text p { color: var(--muted); margin: 15px 0 22px; }
+        .feature { margin: 12px 0; color: #e7eaf0; }
+        .feature span { color: var(--gold); margin-right: 8px; }
 
         /* CONTACT */
-
         .contact-box {
             padding: 35px;
             background: var(--panel);
@@ -347,13 +259,9 @@
             text-align: center;
         }
 
-        .contact-box p {
-            color: var(--muted);
-            margin: 10px 0 22px;
-        }
+        .contact-box p { color: var(--muted); margin: 10px 0 22px; }
 
         /* FOOTER */
-
         footer {
             background: #06080c;
             border-top: 1px solid var(--border);
@@ -368,133 +276,8 @@
             gap: 15px;
         }
 
-        .footer-content p {
-            color: var(--muted);
-            font-size: 13px;
-        }
-
-        .back-top {
-            color: var(--gold);
-        }
-
-        /* TABLET */
-
-        @media (max-width: 850px) {
-            .genre-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-
-            .about-visual {
-                min-height: 220px;
-            }
-
-            .nav-links {
-                gap: 15px;
-            }
-        }
-
-        /* MOBILE */
-
-        @media (max-width: 600px) {
-            .container {
-                width: 92%;
-            }
-
-            .navbar {
-                min-height: 66px;
-                flex-wrap: wrap;
-                padding: 13px 0;
-            }
-
-            .logo {
-                font-size: 21px;
-            }
-
-            .menu-btn {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-                width: 100%;
-                flex-direction: column;
-                align-items: stretch;
-                gap: 0;
-                padding: 8px 0;
-            }
-
-            .nav-links.open {
-                display: flex;
-            }
-
-            .nav-links a {
-                padding: 12px 5px;
-                border-top: 1px solid #202734;
-            }
-
-            .hero {
-                min-height: 430px;
-            }
-
-            .hero-content {
-                padding-top: 55px;
-                padding-bottom: 55px;
-            }
-
-            .hero h1 {
-                font-size: 39px;
-            }
-
-            .hero p {
-                font-size: 15px;
-            }
-
-            section {
-                padding: 45px 0;
-            }
-
-            .genre-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 10px;
-            }
-
-            .genre-card {
-                min-height: 100px;
-                padding: 15px 7px;
-            }
-
-            .empty-state {
-                padding: 40px 16px;
-            }
-
-            .empty-state h3 {
-                font-size: 20px;
-            }
-
-            .contact-box {
-                padding: 26px 17px;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }
-
-            *, *::before, *::after {
-                transition-duration: 0.01ms !important;
-            }
-        }
+        .footer-content p { color: var(--muted); font-size: 13px; }
+        .back-top { color: var(--gold); }
 
         /* STORY HUB HORROR READER */
         .story-card {
@@ -507,58 +290,292 @@
             grid-template-columns: minmax(180px, 300px) 1fr;
             gap: 0;
         }
+
         .story-cover {
-            width: 100%; height: 100%; min-height: 320px;
-            object-fit: cover; display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 320px;
+            object-fit: cover;
+            display: block;
         }
+
         .story-info { padding: 28px; align-self: center; }
-        .story-info h3 { font-family: Georgia, serif; color: var(--gold); font-size: clamp(24px, 4vw, 34px); line-height: 1.2; margin: 10px 0; }
+
+        .story-info h3 {
+            font-family: Georgia, serif;
+            color: var(--gold);
+            font-size: clamp(24px, 4vw, 34px);
+            line-height: 1.2;
+            margin: 10px 0;
+        }
+
         .story-info p { color: var(--muted); margin: 10px 0 18px; }
         .episode-list { display: grid; gap: 12px; margin-top: 28px; }
-        .episode-row { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 16px 18px; background: var(--panel); border: 1px solid var(--border); border-radius: 10px; }
+
+        .episode-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 18px;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+
         .episode-row h4 { font-size: 16px; margin-bottom: 3px; }
         .episode-row small { color: var(--muted); }
-        .episode-status { color: #111; background: var(--gold); border-radius: 999px; padding: 5px 11px; font-size: 12px; font-weight: bold; white-space: nowrap; }
+
+        .episode-status {
+            color: #111;
+            background: var(--gold);
+            border-radius: 999px;
+            padding: 5px 11px;
+            font-size: 12px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
         .episode-status.soon { background: #303846; color: #c2cad6; }
-        .reader-panel { display: none; margin-top: 30px; padding: 20px; background: #080b10; border: 1px solid var(--border); border-radius: 14px; }
+
+        .reader-panel {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background: #080b10;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+        }
+
         .reader-panel.visible { display: block; }
-        .reader-top { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:18px; }
+
+        .reader-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
         .reader-top h3 { color: var(--gold); font-family: Georgia, serif; }
-        .pdf-page-wrap { background: #171b22; border-radius: 8px; padding: 10px; min-height: 240px; display:flex; justify-content:center; align-items:flex-start; overflow:auto; }
-        #pdfCanvas { display:block; max-width:100%; height:auto; background:white; }
-        .reader-controls { display:flex; justify-content:center; align-items:center; gap:14px; flex-wrap:wrap; margin-top:18px; }
-        .reader-controls button, .reader-close { border:1px solid var(--gold); background:transparent; color:var(--gold); padding:10px 16px; border-radius:7px; cursor:pointer; }
-        .reader-controls button:disabled { opacity:.35; cursor:not-allowed; }
-        #pageIndicator { color:var(--muted); min-width:100px; text-align:center; }
-        .reader-error { color:#ffc0b5; text-align:center; padding:25px; }
-        @media (max-width:600px) {
+
+        .pdf-page-wrap {
+            background: #171b22;
+            border-radius: 8px;
+            padding: 10px;
+            min-height: 240px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            overflow: auto;
+        }
+
+        #pdfCanvas { display: block; max-width: 100%; height: auto; background: white; }
+
+        .reader-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        .reader-controls button, .reader-close {
+            border: 1px solid var(--gold);
+            background: transparent;
+            color: var(--gold);
+            padding: 10px 16px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .reader-controls button:disabled { opacity: .35; cursor: not-allowed; }
+        #pageIndicator { color: var(--muted); min-width: 100px; text-align: center; }
+        .reader-error { color: #ffc0b5; text-align: center; padding: 25px; }
+
+        /* RATING AND REVIEW - ADDED */
+        .sh-reviews {
+            margin-top: 35px;
+            padding: 25px;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+        }
+
+        .sh-reviews h3 {
+            font-family: Georgia, serif;
+            font-size: 25px;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .sh-review-intro { color: var(--muted); margin-bottom: 22px; }
+
+        .sh-rating-summary {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 18px;
+            padding: 18px;
+            background: #080b10;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .sh-average { font-size: 38px; font-weight: bold; color: var(--gold); line-height: 1.2; }
+        .sh-stars { color: var(--gold); letter-spacing: 3px; font-size: 22px; }
+        .sh-review-count { color: var(--muted); font-size: 13px; }
+
+        .sh-review-form { display: grid; gap: 15px; }
+
+        .sh-review-form label {
+            display: block;
+            color: #e7eaf0;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .sh-review-form input,
+        .sh-review-form textarea {
+            width: 100%;
+            padding: 12px;
+            color: var(--text);
+            background: #080b10;
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            outline: none;
+        }
+
+        .sh-review-form input:focus,
+        .sh-review-form textarea:focus { border-color: var(--gold); }
+
+        .sh-review-form textarea { resize: vertical; min-height: 100px; }
+
+        .sh-star-picker { display: flex; gap: 7px; flex-wrap: wrap; }
+
+        .sh-star-picker button {
+            background: transparent;
+            color: #586171;
+            border: none;
+            cursor: pointer;
+            font-size: 32px;
+            padding: 0 3px;
+            line-height: 1.2;
+        }
+
+        .sh-star-picker button.selected,
+        .sh-star-picker button:hover { color: var(--gold); }
+
+        .sh-review-submit { justify-self: start; }
+
+        .sh-review-message { color: var(--gold); font-size: 14px; min-height: 20px; }
+
+        .sh-review-list { display: grid; gap: 12px; margin-top: 25px; }
+
+        .sh-review-card {
+            background: #080b10;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            padding: 16px;
+        }
+
+        .sh-review-card-top {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+
+        .sh-review-name { font-weight: bold; color: #f5f5f5; }
+        .sh-review-date { color: var(--muted); font-size: 12px; }
+        .sh-review-card-stars { color: var(--gold); letter-spacing: 2px; margin-bottom: 8px; }
+        .sh-review-text { color: #d5dae2; white-space: pre-wrap; overflow-wrap: anywhere; }
+        .sh-no-reviews { color: var(--muted); text-align: center; padding: 18px; }
+
+        /* TABLET */
+        @media (max-width: 850px) {
+            .genre-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .about-grid { grid-template-columns: 1fr; gap: 25px; }
+            .about-visual { min-height: 220px; }
+            .nav-links { gap: 15px; }
+        }
+
+        /* MOBILE */
+        @media (max-width: 600px) {
+            .container { width: 92%; }
+
+            .navbar {
+                min-height: 66px;
+                flex-wrap: wrap;
+                padding: 13px 0;
+            }
+
+            .logo { font-size: 21px; }
+            .menu-btn { display: block; }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 8px 0;
+            }
+
+            .nav-links.open { display: flex; }
+
+            .nav-links a { padding: 12px 5px; border-top: 1px solid #202734; }
+            .hero { min-height: 430px; }
+            .hero-content { padding-top: 55px; padding-bottom: 55px; }
+            .hero h1 { font-size: 39px; }
+            .hero p { font-size: 15px; }
+            section { padding: 45px 0; }
+            .genre-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+            .genre-card { min-height: 100px; padding: 15px 7px; }
+            .empty-state { padding: 40px 16px; }
+            .empty-state h3 { font-size: 20px; }
+            .contact-box { padding: 26px 17px; }
+
+            .footer-content { flex-direction: column; text-align: center; }
             .story-card { grid-template-columns: 1fr; }
-            .story-cover { max-height: 460px; min-height:0; object-fit:contain; background:#050608; }
-            .story-info { padding:20px; }
-            .episode-row { padding:13px; }
-            .reader-panel { padding:10px; }
-            .pdf-page-wrap { padding:3px; }
+
+            .story-cover {
+                max-height: 460px;
+                min-height: 0;
+                object-fit: contain;
+                background: #050608;
+            }
+
+            .story-info { padding: 20px; }
+            .episode-row { padding: 13px; }
+            .reader-panel { padding: 10px; }
+            .pdf-page-wrap { padding: 3px; }
+            .sh-reviews { padding: 17px; }
+            .sh-rating-summary { padding: 14px; }
+            .sh-review-submit { width: 100%; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { transition-duration: 0.01ms !important; }
         }
     </style>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 
 <body>
-
     <!-- HEADER -->
     <header>
         <div class="container navbar">
+            <a href="#home" class="logo"><span>Story</span> Hub</a>
 
-            <a href="#home" class="logo">
-                <span>Story</span> Hub
-            </a>
-
-            <button
-                class="menu-btn"
-                id="menuBtn"
-                aria-expanded="false"
-                aria-controls="navLinks"
-                aria-label="Open navigation menu">
+            <button class="menu-btn" id="menuBtn" aria-expanded="false"
+                aria-controls="navLinks" aria-label="Open navigation menu">
                 ☰ Menu
             </button>
 
@@ -569,25 +586,17 @@
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
             </nav>
-
         </div>
     </header>
 
     <main>
-
         <!-- HERO -->
         <section class="hero" id="home">
             <div class="container hero-content">
-
                 <div class="hero-brand">STORY <span>HUB</span></div>
-                <div class="eyebrow">
-                    A World of Imagination
-                </div>
+                <div class="eyebrow">A World of Imagination</div>
 
-                <h1>
-                    Every Story Has<br>
-                    <span>A New Beginning.</span>
-                </h1>
+                <h1>Every Story Has<br><span>A New Beginning.</span></h1>
 
                 <p>
                     Unakku pidicha stories-ai discover pannu.
@@ -596,87 +605,69 @@
                     Un next favourite story inga start aagattum.
                 </p>
 
-                <a href="#stories" class="btn">
-                    Explore Stories →
-                </a>
-
+                <a href="#stories" class="btn">Explore Stories →</a>
             </div>
         </section>
 
         <!-- GENRES -->
         <section id="genres">
             <div class="container">
-
-                <h2 class="section-heading">
-                    Explore Genres
-                </h2>
+                <h2 class="section-heading">Explore Genres</h2>
 
                 <p class="section-description">
                     Un mood-ku etha story category-ai choose pannu.
                 </p>
 
                 <div class="genre-grid">
-
                     <a href="#stories" class="genre-card">
-                        <span class="genre-icon">🔍</span>
-                        <h3>Crime & Thriller</h3>
+                        <span class="genre-icon">🔍</span><h3>Crime & Thriller</h3>
                     </a>
-
                     <a href="#stories" class="genre-card">
-                        <span class="genre-icon">❤️</span>
-                        <h3>Romance</h3>
+                        <span class="genre-icon">❤️</span><h3>Romance</h3>
                     </a>
-
                     <a href="#stories" class="genre-card">
-                        <span class="genre-icon">🐉</span>
-                        <h3>Fantasy</h3>
+                        <span class="genre-icon">🐉</span><h3>Fantasy</h3>
                     </a>
-
                     <a href="#stories" class="genre-card" aria-label="Explore horror stories">
-                        <span class="genre-icon">👻</span>
-                        <h3>Horror</h3>
+                        <span class="genre-icon">👻</span><h3>Horror</h3>
                     </a>
-
                     <a href="#stories" class="genre-card">
-                        <span class="genre-icon">👁️</span>
-                        <h3>Mystery</h3>
+                        <span class="genre-icon">👁️</span><h3>Mystery</h3>
                     </a>
-
                     <a href="#stories" class="genre-card">
-                        <span class="genre-icon">⚔️</span>
-                        <h3>Adventure</h3>
+                        <span class="genre-icon">⚔️</span><h3>Adventure</h3>
                     </a>
-
                     <a href="#stories" class="genre-card">
-                        <span class="genre-icon">😂</span>
-                        <h3>Comedy</h3>
+                        <span class="genre-icon">😂</span><h3>Comedy</h3>
                     </a>
-
                 </div>
-
             </div>
         </section>
 
         <!-- STORIES -->
         <section class="stories-section" id="stories">
             <div class="container">
-
-                <h2 class="section-heading">
-                    Stories
-                </h2>
+                <h2 class="section-heading">Stories</h2>
 
                 <p class="section-description">
-                    Un next horror experience inga start aagudhu. First 3 episodes free-ah read pannalaam.
+                    Un next horror experience inga start aagudhu.
+                    First 3 episodes free-ah read pannalaam.
                 </p>
 
                 <article class="story-card">
-                    <img class="story-cover" src="./horror-cover.jpeg" alt="2:00 AM — The Final Game horror story cover">
+                    <img class="story-cover" src="./horror-cover.jpeg"
+                        alt="2:00 AM — The Final Game horror story cover">
+
                     <div class="story-info">
                         <div class="eyebrow">Story Hub Original · Horror</div>
                         <h3>2:00 AM — THE FINAL GAME</h3>
                         <p>4 Friends. 4 Levels. 20 Lives. One Nightmare.</p>
                         <p>Oru veedu. Oru pei. Thappikka mudiyadha oru game.</p>
-                        <a href="#episode-list" class="btn" onclick="document.getElementById('episode-list').scrollIntoView({behavior:'smooth'}); return false;">Explore Episodes ↓</a>
+
+                        <a href="#episode-list" class="btn"
+                            onclick="document.getElementById('episode-list').scrollIntoView({behavior:'smooth'}); return false;">
+                            Explore Episodes ↓
+                        </a>
                     </div>
                 </article>
 
@@ -685,33 +676,119 @@
                         <div><h4>Episode 1 — The Game Begins</h4><small>Original PDF · 5 pages</small></div>
                         <a class="btn" href="./episodes/episode-1.pdf" target="_blank" rel="noopener">Read Free ↗</a>
                     </div>
+
                     <div class="episode-row">
                         <div><h4>Episode 2 — You Cannot Leave</h4><small>Original PDF · 5 pages</small></div>
                         <a class="btn" href="./episodes/episode-2.pdf" target="_blank" rel="noopener">Read Free ↗</a>
                     </div>
+
                     <div class="episode-row">
                         <div><h4>Episode 3 — Level 2</h4><small>Original PDF · 8 pages</small></div>
                         <a class="btn" href="./episodes/episode-3.pdf" target="_blank" rel="noopener">Read Free ↗</a>
                     </div>
-                    <div class="episode-row"><div><h4>Episode 4 — The Monster</h4><small>Episode not published yet</small></div><span class="episode-status soon">COMING SOON</span></div>
-                    <div class="episode-row"><div><h4>Episode 5 — The Real Bala</h4><small>Episode not published yet</small></div><span class="episode-status soon">COMING SOON</span></div>
-                    <div class="episode-row"><div><h4>Episode 6 — Find Bala Before 2:00 AM</h4><small>Episode not published yet</small></div><span class="episode-status soon">COMING SOON</span></div>
-                    <div class="episode-row"><div><h4>Episode 7 — The Final Level</h4><small>Episode not published yet</small></div><span class="episode-status soon">COMING SOON</span></div>
-                    <div class="episode-row"><div><h4>Episode 8 — The Last Game</h4><small>Episode not published yet</small></div><span class="episode-status soon">COMING SOON</span></div>
-                    <div class="episode-row"><div><h4>Episode 9 — The Divine Entry</h4><small>Episode not published yet</small></div><span class="episode-status soon">COMING SOON</span></div>
+
+                    <!-- EPISODE 4 BUTTON -->
+                    <div class="episode-row">
+                        <div><h4>Episode 4 — The Monster</h4><small>Read Episode 4</small></div>
+                        <button class="btn" type="button" onclick="openEpisode(4)">Read free ↗</button>
+                    </div>
+
+                    <!-- EPISODE 5 BUTTON -->
+                    <div class="episode-row">
+                        <div><h4>Episode 5 — The Real Bala</h4><small>Read Episode 5</small></div>
+                        <button class="btn" type="button" onclick="openEpisode(5)">Read free ↗</button>
+                    </div>
+
+                    <!-- EPISODE 6 BUTTON -->
+                    <div class="episode-row">
+                        <div><h4>Episode 6 — Find Bala Before 2:00 AM</h4><small>Read Episode 6</small></div>
+                        <button class="btn" type="button" onclick="openEpisode(6)">Read free ↗</button>
+                    </div>
+
+                    <div class="episode-row">
+                        <div><h4>Episode 7 — The Final Level</h4><small>Episode not published yet</small></div>
+                        <span class="episode-status soon">COMING SOON</span>
+                    </div>
+
+                    <div class="episode-row">
+                        <div><h4>Episode 8 — The Last Game</h4><small>Episode not published yet</small></div>
+                        <span class="episode-status soon">COMING SOON</span>
+                    </div>
+
+                    <div class="episode-row">
+                        <div><h4>Episode 9 — The Divine Entry</h4><small>Episode not published yet</small></div>
+                        <span class="episode-status soon">COMING SOON</span>
+                    </div>
                 </div>
 
+                <!-- PAGE-BY-PAGE PDF READER -->
                 <div class="reader-panel" id="readerPanel" aria-live="polite">
                     <div class="reader-top">
-                        <div><div class="eyebrow">Now Reading</div><h3 id="readerTitle">Episode 1</h3></div>
+                        <div>
+                            <div class="eyebrow">Now Reading</div>
+                            <h3 id="readerTitle">Episode 1</h3>
+                        </div>
                         <button type="button" class="reader-close" onclick="closeReader()">✕ Close Reader</button>
                     </div>
+
                     <div id="readerMessage" class="reader-error" style="display:none"></div>
                     <div class="pdf-page-wrap" id="pdfPageWrap"><canvas id="pdfCanvas"></canvas></div>
+
                     <div class="reader-controls">
                         <button type="button" id="prevPageBtn" onclick="changePage(-1)" disabled>← Previous Page</button>
                         <span id="pageIndicator">Page 1 / —</span>
                         <button type="button" id="nextPageBtn" onclick="changePage(1)">Next Page →</button>
+                    </div>
+                </div>
+
+                <!-- RATING AND REVIEW -->
+                <div class="sh-reviews" id="story-reviews">
+                    <h3>⭐ Rate & Review This Story</h3>
+                    <p class="sh-review-intro">
+                        Story unakku eppadi irundhuchu? Un rating-um review-um share pannu!
+                    </p>
+
+                    <div class="sh-rating-summary">
+                        <div>
+                            <div class="sh-average" id="shAverage">0.0</div>
+                            <div class="sh-stars" id="shAverageStars">☆☆☆☆☆</div>
+                        </div>
+                        <div>
+                            <strong>Reader Rating</strong>
+                            <div class="sh-review-count" id="shReviewCount">0 reviews</div>
+                        </div>
+                    </div>
+
+                    <form class="sh-review-form" id="shReviewForm">
+                        <div>
+                            <label for="shName">Your name</label>
+                            <input id="shName" name="name" type="text"
+                                maxlength="40" placeholder="Enter your name" required>
+                        </div>
+
+                        <div>
+                            <label>Your rating</label>
+                            <div class="sh-star-picker" id="shStarPicker" aria-label="Choose a star rating">
+                                <button type="button" data-rating="1" aria-label="1 star">★</button>
+                                <button type="button" data-rating="2" aria-label="2 stars">★</button>
+                                <button type="button" data-rating="3" aria-label="3 stars">★</button>
+                                <button type="button" data-rating="4" aria-label="4 stars">★</button>
+                                <button type="button" data-rating="5" aria-label="5 stars">★</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="shComment">Your review</label>
+                            <textarea id="shComment" name="comment" maxlength="600"
+                                placeholder="What did you like about the story?" required></textarea>
+                        </div>
+
+                        <button class="btn sh-review-submit" type="submit">Submit Review ↗</button>
+                        <p class="sh-review-message" id="shReviewMessage" role="status"></p>
+                    </form>
+
+                    <div class="sh-review-list" id="shReviewList">
+                        <p class="sh-no-reviews">Be the first to review this story!</p>
                     </div>
                 </div>
 
@@ -721,18 +798,11 @@
         <!-- ABOUT -->
         <section id="about">
             <div class="container about-grid">
-
-                <div class="about-visual" aria-hidden="true">
-                    📖
-                </div>
+                <div class="about-visual" aria-hidden="true">📖</div>
 
                 <div class="about-text">
-
                     <div class="eyebrow">Our World</div>
-
-                    <h2 class="section-heading">
-                        More Than Just Stories
-                    </h2>
+                    <h2 class="section-heading">More Than Just Stories</h2>
 
                     <p>
                         Idhu stories-ai virumbura readers-kaana
@@ -742,86 +812,47 @@
                         engaloda journey inga start aagudhu.
                     </p>
 
-                    <div class="feature">
-                        <span>✦</span> Multiple story genres
-                    </div>
-
-                    <div class="feature">
-                        <span>✦</span> Episode-by-episode reading
-                    </div>
-
-                    <div class="feature">
-                        <span>✦</span> Mobile and desktop friendly
-                    </div>
-
+                    <div class="feature"><span>✦</span> Multiple story genres</div>
+                    <div class="feature"><span>✦</span> Episode-by-episode reading</div>
+                    <div class="feature"><span>✦</span> Mobile and desktop friendly</div>
                 </div>
-
             </div>
         </section>
 
         <!-- CONTACT -->
         <section id="contact">
             <div class="container">
-
                 <div class="contact-box">
-
-                    <h2 class="section-heading">
-                        Stay Connected
-                    </h2>
-
-                    <p>
-                        Questions, suggestions or feedback?
-                        Official contact details will be added here.
-                    </p>
-
-                    <!-- Add your official email or social link later -->
-
-                    <a href="#home" class="btn">
-                        Back to Home ↑
-                    </a>
-
+                    <h2 class="section-heading">Stay Connected</h2>
+                    <p>Questions, suggestions or feedback? Official contact details will be added here.</p>
+                    <a href="#home" class="btn">Back to Home ↑</a>
                 </div>
-
             </div>
         </section>
-
     </main>
 
     <!-- FOOTER -->
     <footer>
         <div class="container footer-content">
-
-            <div class="logo">
-                <span>Story</span> Hub
-            </div>
-
-            <p>
-                © <span id="year"></span> Story Hub.
-                All rights reserved.
-            </p>
-
-            <a href="#home" class="back-top">
-                Back to top ↑
-            </a>
-
+            <div class="logo"><span>Story</span> Hub</div>
+            <p>© <span id="year"></span> Story Hub. All rights reserved.</p>
+            <a href="#home" class="back-top">Back to top ↑</a>
         </div>
     </footer>
 
-
     <script>
+        /* MOBILE MENU */
         const menuBtn = document.getElementById("menuBtn");
         const navLinks = document.getElementById("navLinks");
 
         menuBtn.addEventListener("click", function () {
             const isOpen = navLinks.classList.toggle("open");
-
             menuBtn.setAttribute("aria-expanded", isOpen);
             menuBtn.setAttribute(
                 "aria-label",
                 isOpen ? "Close navigation menu" : "Open navigation menu"
             );
         });
-
 
         navLinks.querySelectorAll("a").forEach(function (link) {
             link.addEventListener("click", function () {
@@ -830,44 +861,61 @@
             });
         });
 
-        // Current year automatic-ah update aagum
-        document.getElementById("year").textContent =
-            new Date().getFullYear();
+        document.getElementById("year").textContent = new Date().getFullYear();
 
-        // PDF.js page-by-page story reader. PDFs remain separate files in /episodes/.
+        /* PDF.JS READER */
         if (window.pdfjsLib) {
-            pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+            pdfjsLib.GlobalWorkerOptions.workerSrc =
+                "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
         }
+
         const episodeFiles = {
             1: { title: "Episode 1 — The Game Begins", url: "./episodes/episode-1.pdf" },
             2: { title: "Episode 2 — You Cannot Leave", url: "./episodes/episode-2.pdf" },
-            3: { title: "Episode 3 — Level 2", url: "./episodes/episode-3.pdf" }
+            3: { title: "Episode 3 — Level 2", url: "./episodes/episode-3.pdf" },
+            4: { title: "Episode 4 — The Monster", url: "./episodes/episode-4.pdf" },
+            5: { title: "Episode 5 — The Real Bala", url: "./episodes/episode-5.pdf" },
+            6: { title: "Episode 6 — Find Bala Before 2:00 AM", url: "./episodes/episode-6.pdf" }
         };
+
         let currentPdf = null;
         let currentPage = 1;
         let renderTask = null;
 
         async function openEpisode(number) {
+            const episode = episodeFiles[number];
+
+            if (!episode) {
+                alert("Indha episode innum available illa.");
+                return;
+            }
+
             const panel = document.getElementById("readerPanel");
             const message = document.getElementById("readerMessage");
-            const canvas = document.getElementById("pdfCanvas");
-            const ctx = canvas.getContext("2d");
+
             panel.classList.add("visible");
             panel.scrollIntoView({ behavior: "smooth", block: "start" });
-            document.getElementById("readerTitle").textContent = episodeFiles[number].title;
+
+            document.getElementById("readerTitle").textContent = episode.title;
             message.style.display = "none";
             document.getElementById("pdfPageWrap").style.display = "flex";
             document.getElementById("pageIndicator").textContent = "Loading PDF…";
             document.getElementById("prevPageBtn").disabled = true;
             document.getElementById("nextPageBtn").disabled = true;
+
             try {
-                if (!window.pdfjsLib) throw new Error("PDF reader library load aagala. Internet connection check pannunga.");
-                currentPdf = await pdfjsLib.getDocument(episodeFiles[number].url).promise;
+                if (!window.pdfjsLib) {
+                    throw new Error("PDF reader load aagala. Internet connection check pannunga.");
+                }
+
+                currentPdf = await pdfjsLib.getDocument(episode.url).promise;
                 currentPage = 1;
                 await renderPdfPage();
             } catch (error) {
                 document.getElementById("pdfPageWrap").style.display = "none";
-                message.textContent = "PDF open aagala. File path correct-ah irukka nu check pannunga: " + episodeFiles[number].url + " (" + error.message + ")";
+                message.textContent =
+                    "PDF open aagala. '" + episode.url +
+                    "' file correct-ah episodes folder-la upload pannirukkingala nu check pannunga.";
                 message.style.display = "block";
                 document.getElementById("pageIndicator").textContent = "Unable to load";
             }
@@ -875,31 +923,48 @@
 
         async function renderPdfPage() {
             if (!currentPdf) return;
-            if (renderTask) { try { renderTask.cancel(); } catch (e) {} }
+
+            if (renderTask) {
+                try { renderTask.cancel(); } catch (e) {}
+            }
+
             const page = await currentPdf.getPage(currentPage);
             const canvas = document.getElementById("pdfCanvas");
             const ctx = canvas.getContext("2d");
             const wrap = document.getElementById("pdfPageWrap");
+
             const baseViewport = page.getViewport({ scale: 1 });
             const maxWidth = Math.max(250, wrap.clientWidth - 20);
             const scale = Math.min(maxWidth / baseViewport.width, 1.6);
             const viewport = page.getViewport({ scale });
+
             canvas.width = Math.floor(viewport.width);
             canvas.height = Math.floor(viewport.height);
+
             renderTask = page.render({ canvasContext: ctx, viewport: viewport });
             await renderTask.promise;
-            document.getElementById("pageIndicator").textContent = "Page " + currentPage + " / " + currentPdf.numPages;
+
+            document.getElementById("pageIndicator").textContent =
+                "Page " + currentPage + " / " + currentPdf.numPages;
+
             document.getElementById("prevPageBtn").disabled = currentPage <= 1;
-            document.getElementById("nextPageBtn").disabled = currentPage >= currentPdf.numPages;
+            document.getElementById("nextPageBtn").disabled =
+                currentPage >= currentPdf.numPages;
         }
 
         async function changePage(direction) {
             if (!currentPdf) return;
+
             const next = currentPage + direction;
             if (next < 1 || next > currentPdf.numPages) return;
+
             currentPage = next;
-            try { await renderPdfPage(); }
-            catch (error) { if (error.name !== "RenderingCancelledException") console.error(error); }
+
+            try {
+                await renderPdfPage();
+            } catch (error) {
+                if (error.name !== "RenderingCancelledException") console.error(error);
+            }
         }
 
         function closeReader() {
@@ -911,284 +976,148 @@
         window.addEventListener("resize", function () {
             if (currentPdf) renderPdfPage().catch(function () {});
         });
+
+        /* RATING AND REVIEW SYSTEM
+           Reviews are saved in this browser using localStorage.
+           This does not publish reviews to every visitor's device. */
+
+        const REVIEW_STORAGE_KEY = "storyhub_horror_reviews_v1";
+        let selectedRating = 0;
+        let storyReviews = [];
+
+        function loadReviews() {
+            try {
+                const saved = localStorage.getItem(REVIEW_STORAGE_KEY);
+                const parsed = saved ? JSON.parse(saved) : [];
+                storyReviews = Array.isArray(parsed) ? parsed : [];
+            } catch (error) {
+                storyReviews = [];
+            }
+        }
+
+        function saveReviews() {
+            try {
+                localStorage.setItem(REVIEW_STORAGE_KEY, JSON.stringify(storyReviews));
+                return true;
+            } catch (error) {
+                document.getElementById("shReviewMessage").textContent =
+                    "Review save aagala. Browser storage unavailable.";
+                return false;
+            }
+        }
+
+        function updateStarPicker() {
+            document.querySelectorAll("#shStarPicker button").forEach(function (button) {
+                const rating = Number(button.dataset.rating);
+                button.classList.toggle("selected", rating <= selectedRating);
+                button.setAttribute("aria-pressed", rating === selectedRating ? "true" : "false");
+            });
+        }
+
+        document.querySelectorAll("#shStarPicker button").forEach(function (button) {
+            button.addEventListener("click", function () {
+                selectedRating = Number(button.dataset.rating);
+                updateStarPicker();
+                document.getElementById("shReviewMessage").textContent = "";
+            });
+        });
+
+        function escapeHTML(value) {
+            return String(value).replace(/[&<>"']/g, function (character) {
+                const replacements = {
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#039;"
+                };
+                return replacements[character];
+            });
+        }
+
+        function renderReviews() {
+            const list = document.getElementById("shReviewList");
+            const count = storyReviews.length;
+
+            const average = count
+                ? storyReviews.reduce(function (sum, review) {
+                    return sum + Number(review.rating);
+                }, 0) / count
+                : 0;
+
+            document.getElementById("shAverage").textContent = average.toFixed(1);
+            document.getElementById("shAverageStars").textContent =
+                "★".repeat(Math.round(average)) + "☆".repeat(5 - Math.round(average));
+
+            document.getElementById("shReviewCount").textContent =
+                count + (count === 1 ? " review" : " reviews");
+
+            if (!count) {
+                list.innerHTML =
+                    '<p class="sh-no-reviews">Be the first to review this story!</p>';
+                return;
+            }
+
+            list.innerHTML = storyReviews.slice().reverse().map(function (review) {
+                const rating = Math.max(1, Math.min(5, Number(review.rating) || 1));
+
+                return `
+                    <article class="sh-review-card">
+                        <div class="sh-review-card-top">
+                            <span class="sh-review-name">${escapeHTML(review.name)}</span>
+                            <span class="sh-review-date">${escapeHTML(review.date || "")}</span>
+                        </div>
+                        <div class="sh-review-card-stars" aria-label="${rating} out of 5 stars">
+                            ${"★".repeat(rating)}${"☆".repeat(5 - rating)}
+                        </div>
+                        <p class="sh-review-text">${escapeHTML(review.comment)}</p>
+                    </article>
+                `;
+            }).join("");
+        }
+
+        document.getElementById("shReviewForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById("shName").value.trim();
+            const comment = document.getElementById("shComment").value.trim();
+            const message = document.getElementById("shReviewMessage");
+
+            if (!name || !comment) {
+                message.textContent = "Name-um review-um enter pannu nanba.";
+                return;
+            }
+
+            if (selectedRating < 1 || selectedRating > 5) {
+                message.textContent = "First un star rating select pannu nanba.";
+                return;
+            }
+
+            const review = {
+                name: name.slice(0, 40),
+                rating: selectedRating,
+                comment: comment.slice(0, 600),
+                date: new Date().toLocaleDateString()
+            };
+
+            storyReviews.push(review);
+
+            if (!saveReviews()) {
+                storyReviews.pop();
+                return;
+            }
+
+            renderReviews();
+            this.reset();
+            selectedRating = 0;
+            updateStarPicker();
+
+            message.textContent = "Thanks nanba! Un review save aagiduchu ⭐";
+        });
+
+        loadReviews();
+        renderReviews();
+        updateStarPicker();
     </script>
-
-    
-<!-- STORY HUB: EPISODE LINKS -->
-<section id="episodes" class="sh-section">
-  <h2>THE STORY FILES</h2>
-  <p>Choose an episode and enter the game.</p>
-
-  <div class="sh-episodes">
-    <a href="episodes/episode1.pdf" target="_blank">EPISODE 01 ↗</a>
-    <a href="episodes/episode2.pdf" target="_blank">EPISODE 02 ↗</a>
-    <a href="episodes/episode3.pdf" target="_blank">EPISODE 03 ↗</a>
-    <a href="episodes/episode4.pdf" target="_blank">EPISODE 04 ↗</a>
-    <a href="episodes/episode5.pdf" target="_blank">EPISODE 05 ↗</a>
-    <a href="episodes/episode6.pdf" target="_blank">EPISODE 06 ↗</a>
-  </div>
-</section>
-
-<!-- STORY HUB: REVIEW & RATING -->
-<section id="reviews" class="sh-section">
-  <h2>READER'S VERDICT</h2>
-  <p>Rate the story. Share your thoughts.</p>
-
-  <div class="sh-rating-card">
-    <div class="sh-average">
-      <span id="sh-average">0.0</span>
-      <span class="sh-stars" id="sh-average-stars">☆☆☆☆☆</span>
-      <small id="sh-count">0 reviews</small>
-    </div>
-
-    <form id="sh-review-form">
-      <label for="sh-name">Your name</label>
-      <input id="sh-name" maxlength="40"
-             placeholder="Enter your name" required>
-
-      <label>Your rating</label>
-      <div class="sh-pick-stars" id="sh-pick-stars">
-        <button type="button" data-star="1" aria-label="1 star">☆</button>
-        <button type="button" data-star="2" aria-label="2 stars">☆</button>
-        <button type="button" data-star="3" aria-label="3 stars">☆</button>
-        <button type="button" data-star="4" aria-label="4 stars">☆</button>
-        <button type="button" data-star="5" aria-label="5 stars">☆</button>
-      </div>
-
-      <label for="sh-comment">Your review</label>
-      <textarea id="sh-comment" maxlength="500"
-                placeholder="What did you think about the story?"
-                required></textarea>
-
-      <button class="sh-submit" type="submit">SUBMIT REVIEW</button>
-      <p id="sh-message" aria-live="polite"></p>
-    </form>
-  </div>
-
-  <h3>WHAT READERS THINK</h3>
-  <div id="sh-review-list"></div>
-</section>
-
-<style>
-.sh-section {
-  max-width: 900px;
-  margin: 55px auto;
-  padding: 24px;
-  color: #f4f0e8;
-  font-family: Arial, sans-serif;
-}
-.sh-section h2 {
-  color: #d8b45a;
-  letter-spacing: 3px;
-}
-.sh-section h3 {
-  margin-top: 30px;
-  color: #d8b45a;
-}
-.sh-episodes {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 12px;
-  margin-top: 24px;
-}
-.sh-episodes a {
-  padding: 16px 10px;
-  border: 1px solid #80672f;
-  color: #e5c46b;
-  text-decoration: none;
-  text-align: center;
-  background: #111;
-  border-radius: 8px;
-}
-.sh-episodes a:hover {
-  background: #2a2110;
-  border-color: #e5c46b;
-}
-.sh-rating-card, .sh-review-item {
-  background: #111;
-  border: 1px solid #393124;
-  border-radius: 12px;
-  padding: 22px;
-  margin-top: 18px;
-}
-.sh-average {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 25px;
-}
-#sh-average {
-  font-size: 42px;
-  color: #e5c46b;
-}
-.sh-stars, .sh-review-stars {
-  color: #e5c46b;
-  letter-spacing: 3px;
-}
-#sh-review-form label {
-  display: block;
-  margin: 16px 0 8px;
-}
-#sh-review-form input, #sh-review-form textarea {
-  box-sizing: border-box;
-  width: 100%;
-  padding: 12px;
-  color: #fff;
-  background: #080808;
-  border: 1px solid #51452e;
-  border-radius: 6px;
-  font: inherit;
-}
-#sh-review-form textarea {
-  min-height: 110px;
-  resize: vertical;
-}
-.sh-pick-stars button {
-  padding: 4px;
-  border: 0;
-  background: transparent;
-  color: #e5c46b;
-  font-size: 32px;
-  cursor: pointer;
-}
-.sh-submit {
-  margin-top: 18px;
-  padding: 13px 18px;
-  background: #d8b45a;
-  color: #111;
-  border: 0;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.sh-review-item p {
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
-#sh-message { color: #e5c46b; }
-</style>
-
-<script>
-(() => {
-  const storageKey = "storyhub_reader_reviews_v1";
-  const form = document.getElementById("sh-review-form");
-  const starButtons = document.querySelectorAll(
-    "#sh-pick-stars button"
-  );
-  const message = document.getElementById("sh-message");
-  let selectedRating = 0;
-
-  // This demo saves reviews only in this browser.
-  function getReviews() {
-    try {
-      return JSON.parse(localStorage.getItem(storageKey) || "[]");
-    } catch {
-      return [];
-    }
-  }
-
-  function chooseRating(value) {
-    selectedRating = value;
-    starButtons.forEach(button => {
-      const active = Number(button.dataset.star) <= value;
-      button.textContent = active ? "★" : "☆";
-      button.setAttribute("aria-pressed", String(
-        Number(button.dataset.star) === value
-      ));
-    });
-  }
-
-  starButtons.forEach(button => {
-    button.addEventListener("click", () => {
-      chooseRating(Number(button.dataset.star));
-    });
-  });
-
-  function renderReviews() {
-    const reviews = getReviews();
-    const average = reviews.length
-      ? reviews.reduce((sum, item) => sum + item.rating, 0)
-        / reviews.length
-      : 0;
-
-    document.getElementById("sh-average").textContent =
-      average.toFixed(1);
-    document.getElementById("sh-average-stars").textContent =
-      "★".repeat(Math.round(average)) +
-      "☆".repeat(5 - Math.round(average));
-    document.getElementById("sh-count").textContent =
-      reviews.length + (reviews.length === 1 ? " review" : " reviews");
-
-    const list = document.getElementById("sh-review-list");
-    list.replaceChildren();
-
-    if (!reviews.length) {
-      const empty = document.createElement("p");
-      empty.textContent = "Be the first to review this story.";
-      list.appendChild(empty);
-      return;
-    }
-
-    reviews.slice().reverse().forEach(review => {
-      const card = document.createElement("article");
-      card.className = "sh-review-item";
-
-      const name = document.createElement("strong");
-      name.textContent = review.name;
-
-      const stars = document.createElement("div");
-      stars.className = "sh-review-stars";
-      stars.textContent = "★".repeat(review.rating) +
-        "☆".repeat(5 - review.rating);
-
-      const comment = document.createElement("p");
-      comment.textContent = review.comment;
-
-      card.append(name, stars, comment);
-      list.appendChild(card);
-    });
-  }
-
-  form.addEventListener("submit", event => {
-    event.preventDefault();
-
-    if (!selectedRating) {
-      message.textContent = "Please select a star rating first.";
-      return;
-    }
-
-    const name = document.getElementById("sh-name").value.trim();
-    const comment = document.getElementById("sh-comment").value.trim();
-
-    if (!name || !comment) {
-      message.textContent = "Please fill in both fields.";
-      return;
-    }
-
-    const reviews = getReviews();
-    reviews.push({
-      name,
-      rating: selectedRating,
-      comment
-    });
-
-    try {
-      localStorage.setItem(storageKey, JSON.stringify(reviews));
-      form.reset();
-      chooseRating(0);
-      message.textContent = "Review saved in this browser.";
-      renderReviews();
-    } catch {
-      message.textContent =
-        "Could not save the review in this browser.";
-    }
-  });
-
-  renderReviews();
-})();
-</script>
-
-
 </body>
 </html>
