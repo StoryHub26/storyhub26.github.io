@@ -1,28 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Story Hub | Read. Explore. Be Inspired</title>
     <meta name="description" content="Discover exciting stories, one chapter at a time.">
 
     <style>
-        /* BASIC SETTINGS */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         html { scroll-behavior: smooth; scroll-padding-top: 85px; }
-
-        body {
-            background: #080b10;
-            color: #f5f5f5;
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-        }
-
-        a { text-decoration: none; color: inherit; }
-        button, input, textarea { font: inherit; }
-        button, a { -webkit-tap-highlight-color: transparent; }
 
         :root {
             --bg: #080b10;
@@ -33,11 +21,21 @@
             --border: #293241;
         }
 
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        button, input, textarea { font: inherit; }
+        button, a { -webkit-tap-highlight-color: transparent; }
+
         .container { width: min(1120px, 90%); margin: auto; }
 
-        /* HEADER */
         header {
-            background: rgba(8, 11, 16, 0.97);
+            background: rgba(8,11,16,.97);
             border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
@@ -63,9 +61,7 @@
         .logo span { color: white; }
 
         .nav-links { display: flex; align-items: center; gap: 25px; }
-
-        .nav-links a { color: var(--muted); transition: 0.3s; }
-
+        .nav-links a { color: var(--muted); transition: .3s; }
         .nav-links a:hover, .nav-links a.active { color: var(--gold); }
 
         .menu-btn {
@@ -78,7 +74,6 @@
             cursor: pointer;
         }
 
-        /* HERO SECTION */
         .hero {
             min-height: 490px;
             display: flex;
@@ -86,13 +81,12 @@
             position: relative;
             overflow: hidden;
             background:
-                radial-gradient(ellipse at 80% 45%, rgba(133, 69, 32, 0.45), transparent 45%),
+                radial-gradient(ellipse at 80% 45%, rgba(133,69,32,.45), transparent 45%),
                 linear-gradient(120deg, #080b10 20%, #17202c 65%, #302018);
         }
 
         .hero-content {
-            padding-top: 70px;
-            padding-bottom: 70px;
+            padding: 70px 0;
             position: relative;
             z-index: 1;
             text-align: center;
@@ -101,19 +95,17 @@
 
         .hero-brand {
             font-family: Georgia, serif;
-            font-size: clamp(54px, 10vw, 108px);
+            font-size: clamp(54px,10vw,108px);
             line-height: 1;
-            letter-spacing: clamp(2px, 1vw, 8px);
+            letter-spacing: clamp(2px,1vw,8px);
             font-weight: 900;
             text-transform: uppercase;
             color: #f8f5ef;
-            text-shadow: 0 0 28px rgba(255, 189, 74, .20);
+            text-shadow: 0 0 28px rgba(255,189,74,.2);
             margin-bottom: 22px;
         }
 
         .hero-brand span { color: var(--gold); }
-        .hero .eyebrow { text-align: center; }
-        .hero h1, .hero p { margin-left: auto; margin-right: auto; }
 
         .eyebrow {
             color: var(--gold);
@@ -123,12 +115,14 @@
             font-weight: bold;
         }
 
+        .hero .eyebrow { text-align: center; }
+
         .hero h1 {
             max-width: 720px;
             font-family: Georgia, serif;
-            font-size: clamp(38px, 6vw, 68px);
+            font-size: clamp(38px,6vw,68px);
             line-height: 1.12;
-            margin: 20px 0;
+            margin: 20px auto;
         }
 
         .hero h1 span { color: var(--gold); }
@@ -137,7 +131,7 @@
             max-width: 570px;
             color: var(--muted);
             font-size: 17px;
-            margin-bottom: 26px;
+            margin: 0 auto 26px;
         }
 
         .btn {
@@ -150,7 +144,7 @@
             padding: 13px 23px;
             border-radius: 7px;
             font-weight: bold;
-            transition: 0.25s;
+            transition: .25s;
             border: none;
             cursor: pointer;
         }
@@ -165,12 +159,11 @@
 
         .outline-btn:hover { background: var(--gold); color: #111; }
 
-        /* COMMON SECTIONS */
         section { padding: 65px 0; }
 
         .section-heading {
             font-family: Georgia, serif;
-            font-size: clamp(27px, 4vw, 36px);
+            font-size: clamp(27px,4vw,36px);
             margin-bottom: 12px;
         }
 
@@ -180,10 +173,9 @@
             margin-bottom: 30px;
         }
 
-        /* GENRES */
         .genre-grid {
             display: grid;
-            grid-template-columns: repeat(6, minmax(0, 1fr));
+            grid-template-columns: repeat(6,minmax(0,1fr));
             gap: 14px;
         }
 
@@ -194,14 +186,13 @@
             min-height: 115px;
             padding: 20px 10px;
             text-align: center;
-            transition: 0.25s;
+            transition: .25s;
         }
 
         .genre-card:hover { border-color: var(--gold); transform: translateY(-4px); }
         .genre-icon { display: block; font-size: 27px; margin-bottom: 8px; }
         .genre-card h3 { font-size: 14px; }
 
-        /* STORIES */
         .stories-section {
             background: #0c1018;
             border-top: 1px solid #171e29;
@@ -225,7 +216,6 @@
             margin: 0 auto 22px;
         }
 
-        /* ABOUT */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -241,7 +231,7 @@
             border-radius: 15px;
             border: 1px solid var(--border);
             background:
-                radial-gradient(circle, rgba(255, 189, 74, 0.18), transparent 60%),
+                radial-gradient(circle,rgba(255,189,74,.18),transparent 60%),
                 #111722;
             font-size: 85px;
         }
@@ -250,7 +240,6 @@
         .feature { margin: 12px 0; color: #e7eaf0; }
         .feature span { color: var(--gold); margin-right: 8px; }
 
-        /* CONTACT */
         .contact-box {
             padding: 35px;
             background: var(--panel);
@@ -261,7 +250,6 @@
 
         .contact-box p { color: var(--muted); margin: 10px 0 22px; }
 
-        /* FOOTER */
         footer {
             background: #06080c;
             border-top: 1px solid var(--border);
@@ -279,7 +267,6 @@
         .footer-content p { color: var(--muted); font-size: 13px; }
         .back-top { color: var(--gold); }
 
-        /* STORY HUB HORROR READER */
         .story-card {
             background: var(--panel);
             border: 1px solid var(--border);
@@ -287,8 +274,7 @@
             overflow: hidden;
             max-width: 900px;
             display: grid;
-            grid-template-columns: minmax(180px, 300px) 1fr;
-            gap: 0;
+            grid-template-columns: minmax(180px,300px) 1fr;
         }
 
         .story-cover {
@@ -302,9 +288,9 @@
         .story-info { padding: 28px; align-self: center; }
 
         .story-info h3 {
-            font-family: Georgia, serif;
+            font-family: Georgia,serif;
             color: var(--gold);
-            font-size: clamp(24px, 4vw, 34px);
+            font-size: clamp(24px,4vw,34px);
             line-height: 1.2;
             margin: 10px 0;
         }
@@ -358,7 +344,7 @@
             margin-bottom: 18px;
         }
 
-        .reader-top h3 { color: var(--gold); font-family: Georgia, serif; }
+        .reader-top h3 { color: var(--gold); font-family: Georgia,serif; }
 
         .pdf-page-wrap {
             background: #171b22;
@@ -371,7 +357,12 @@
             overflow: auto;
         }
 
-        #pdfCanvas { display: block; max-width: 100%; height: auto; background: white; }
+        #pdfCanvas {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            background: white;
+        }
 
         .reader-controls {
             display: flex;
@@ -395,7 +386,6 @@
         #pageIndicator { color: var(--muted); min-width: 100px; text-align: center; }
         .reader-error { color: #ffc0b5; text-align: center; padding: 25px; }
 
-        /* RATING AND REVIEW - ADDED */
         .sh-reviews {
             margin-top: 35px;
             padding: 25px;
@@ -405,7 +395,7 @@
         }
 
         .sh-reviews h3 {
-            font-family: Georgia, serif;
+            font-family: Georgia,serif;
             font-size: 25px;
             color: var(--gold);
             margin-bottom: 8px;
@@ -428,7 +418,6 @@
         .sh-average { font-size: 38px; font-weight: bold; color: var(--gold); line-height: 1.2; }
         .sh-stars { color: var(--gold); letter-spacing: 3px; font-size: 22px; }
         .sh-review-count { color: var(--muted); font-size: 13px; }
-
         .sh-review-form { display: grid; gap: 15px; }
 
         .sh-review-form label {
@@ -438,8 +427,7 @@
             margin-bottom: 6px;
         }
 
-        .sh-review-form input,
-        .sh-review-form textarea {
+        .sh-review-form input, .sh-review-form textarea {
             width: 100%;
             padding: 12px;
             color: var(--text);
@@ -449,11 +437,8 @@
             outline: none;
         }
 
-        .sh-review-form input:focus,
-        .sh-review-form textarea:focus { border-color: var(--gold); }
-
+        .sh-review-form input:focus, .sh-review-form textarea:focus { border-color: var(--gold); }
         .sh-review-form textarea { resize: vertical; min-height: 100px; }
-
         .sh-star-picker { display: flex; gap: 7px; flex-wrap: wrap; }
 
         .sh-star-picker button {
@@ -466,13 +451,9 @@
             line-height: 1.2;
         }
 
-        .sh-star-picker button.selected,
-        .sh-star-picker button:hover { color: var(--gold); }
-
+        .sh-star-picker button.selected, .sh-star-picker button:hover { color: var(--gold); }
         .sh-review-submit { justify-self: start; }
-
         .sh-review-message { color: var(--gold); font-size: 14px; min-height: 20px; }
-
         .sh-review-list { display: grid; gap: 12px; margin-top: 25px; }
 
         .sh-review-card {
@@ -496,27 +477,18 @@
         .sh-review-text { color: #d5dae2; white-space: pre-wrap; overflow-wrap: anywhere; }
         .sh-no-reviews { color: var(--muted); text-align: center; padding: 18px; }
 
-        /* TABLET */
         @media (max-width: 850px) {
-            .genre-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .genre-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
             .about-grid { grid-template-columns: 1fr; gap: 25px; }
             .about-visual { min-height: 220px; }
             .nav-links { gap: 15px; }
         }
 
-        /* MOBILE */
         @media (max-width: 600px) {
             .container { width: 92%; }
-
-            .navbar {
-                min-height: 66px;
-                flex-wrap: wrap;
-                padding: 13px 0;
-            }
-
+            .navbar { min-height: 66px; flex-wrap: wrap; padding: 13px 0; }
             .logo { font-size: 21px; }
             .menu-btn { display: block; }
-
             .nav-links {
                 display: none;
                 width: 100%;
@@ -525,31 +497,26 @@
                 gap: 0;
                 padding: 8px 0;
             }
-
             .nav-links.open { display: flex; }
-
             .nav-links a { padding: 12px 5px; border-top: 1px solid #202734; }
             .hero { min-height: 430px; }
-            .hero-content { padding-top: 55px; padding-bottom: 55px; }
+            .hero-content { padding: 55px 0; }
             .hero h1 { font-size: 39px; }
             .hero p { font-size: 15px; }
             section { padding: 45px 0; }
-            .genre-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+            .genre-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
             .genre-card { min-height: 100px; padding: 15px 7px; }
             .empty-state { padding: 40px 16px; }
             .empty-state h3 { font-size: 20px; }
             .contact-box { padding: 26px 17px; }
-
             .footer-content { flex-direction: column; text-align: center; }
             .story-card { grid-template-columns: 1fr; }
-
             .story-cover {
                 max-height: 460px;
                 min-height: 0;
                 object-fit: contain;
                 background: #050608;
             }
-
             .story-info { padding: 20px; }
             .episode-row { padding: 13px; }
             .reader-panel { padding: 10px; }
@@ -561,7 +528,7 @@
 
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
-            *, *::before, *::after { transition-duration: 0.01ms !important; }
+            *, *::before, *::after { transition-duration: .01ms !important; }
         }
     </style>
 
@@ -569,555 +536,508 @@
 </head>
 
 <body>
-    <!-- HEADER -->
-    <header>
-        <div class="container navbar">
-            <a href="#home" class="logo"><span>Story</span> Hub</a>
+<header>
+    <div class="container navbar">
+        <a href="#home" class="logo"><span>Story</span> Hub</a>
+        <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks" aria-label="Open navigation menu">☰ Menu</button>
+        <nav class="nav-links" id="navLinks">
+            <a href="#home" class="active">Home</a>
+            <a href="#genres">Genres</a>
+            <a href="#stories">Stories</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
+</header>
 
-            <button class="menu-btn" id="menuBtn" aria-expanded="false"
-                aria-controls="navLinks" aria-label="Open navigation menu">
-                ☰ Menu
-            </button>
-
-            <nav class="nav-links" id="navLinks">
-                <a href="#home" class="active">Home</a>
-                <a href="#genres">Genres</a>
-                <a href="#stories">Stories</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-            </nav>
+<main>
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <div class="hero-brand">STORY <span>HUB</span></div>
+            <div class="eyebrow">A World of Imagination</div>
+            <h1>Every Story Has<br><span>A New Beginning.</span></h1>
+            <p>Unakku pidicha stories-ai discover pannu. Crime, romance, mystery, fantasy nu pala worlds-kulla travel pannu. Un next favourite story inga start aagattum.</p>
+            <a href="#stories" class="btn">Explore Stories →</a>
         </div>
-    </header>
+    </section>
 
-    <main>
-        <!-- HERO -->
-        <section class="hero" id="home">
-            <div class="container hero-content">
-                <div class="hero-brand">STORY <span>HUB</span></div>
-                <div class="eyebrow">A World of Imagination</div>
-
-                <h1>Every Story Has<br><span>A New Beginning.</span></h1>
-
-                <p>
-                    Unakku pidicha stories-ai discover pannu.
-                    Crime, romance, mystery, fantasy nu
-                    pala worlds-kulla travel pannu.
-                    Un next favourite story inga start aagattum.
-                </p>
-
-                <a href="#stories" class="btn">Explore Stories →</a>
+    <section id="genres">
+        <div class="container">
+            <h2 class="section-heading">Explore Genres</h2>
+            <p class="section-description">Un mood-ku etha story category-ai choose pannu.</p>
+            <div class="genre-grid">
+                <a href="#stories" class="genre-card"><span class="genre-icon">🔍</span><h3>Crime &amp; Thriller</h3></a>
+                <a href="#stories" class="genre-card"><span class="genre-icon">❤️</span><h3>Romance</h3></a>
+                <a href="#stories" class="genre-card"><span class="genre-icon">🐉</span><h3>Fantasy</h3></a>
+                <a href="#stories" class="genre-card" aria-label="Explore horror stories"><span class="genre-icon">👻</span><h3>Horror</h3></a>
+                <a href="#stories" class="genre-card"><span class="genre-icon">👁️</span><h3>Mystery</h3></a>
+                <a href="#stories" class="genre-card"><span class="genre-icon">⚔️</span><h3>Adventure</h3></a>
+                <a href="#stories" class="genre-card"><span class="genre-icon">😂</span><h3>Comedy</h3></a>
             </div>
-        </section>
-
-        <!-- GENRES -->
-        <section id="genres">
-            <div class="container">
-                <h2 class="section-heading">Explore Genres</h2>
-
-                <p class="section-description">
-                    Un mood-ku etha story category-ai choose pannu.
-                </p>
-
-                <div class="genre-grid">
-                    <a href="#stories" class="genre-card">
-                        <span class="genre-icon">🔍</span><h3>Crime & Thriller</h3>
-                    </a>
-                    <a href="#stories" class="genre-card">
-                        <span class="genre-icon">❤️</span><h3>Romance</h3>
-                    </a>
-                    <a href="#stories" class="genre-card">
-                        <span class="genre-icon">🐉</span><h3>Fantasy</h3>
-                    </a>
-                    <a href="#stories" class="genre-card" aria-label="Explore horror stories">
-                        <span class="genre-icon">👻</span><h3>Horror</h3>
-                    </a>
-                    <a href="#stories" class="genre-card">
-                        <span class="genre-icon">👁️</span><h3>Mystery</h3>
-                    </a>
-                    <a href="#stories" class="genre-card">
-                        <span class="genre-icon">⚔️</span><h3>Adventure</h3>
-                    </a>
-                    <a href="#stories" class="genre-card">
-                        <span class="genre-icon">😂</span><h3>Comedy</h3>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- STORIES -->
-        <section class="stories-section" id="stories">
-            <div class="container">
-                <h2 class="section-heading">Stories</h2>
-
-                <p class="section-description">
-                    Un next horror experience inga start aagudhu.
-                    First 3 episodes free-ah read pannalaam.
-                </p>
-
-                <article class="story-card">
-                    <img class="story-cover" src="./horror-cover.jpeg"
-                        alt="2:00 AM — The Final Game horror story cover">
-
-                    <div class="story-info">
-                        <div class="eyebrow">Story Hub Original · Horror</div>
-                        <h3>2:00 AM — THE FINAL GAME</h3>
-                        <p>4 Friends. 4 Levels. 20 Lives. One Nightmare.</p>
-                        <p>Oru veedu. Oru pei. Thappikka mudiyadha oru game.</p>
-
-                        <a href="#episode-list" class="btn"
-                            onclick="document.getElementById('episode-list').scrollIntoView({behavior:'smooth'}); return false;">
-                            Explore Episodes ↓
-                        </a>
-                    </div>
-                </article>
-
-                <div class="episode-list" id="episode-list" aria-label="Episodes">
-                    <div class="episode-row">
-                        <div><h4>Episode 1 — The Game Begins</h4><small>Original PDF · 5 pages</small></div>
-                        <a class="btn" href="./episodes/episode-1.pdf" target="_blank" rel="noopener">Read Free ↗</a>
-                    </div>
-
-                    <div class="episode-row">
-                        <div><h4>Episode 2 — You Cannot Leave</h4><small>Original PDF · 5 pages</small></div>
-                        <a class="btn" href="./episodes/episode-2.pdf" target="_blank" rel="noopener">Read Free ↗</a>
-                    </div>
-
-                    <div class="episode-row">
-                        <div><h4>Episode 3 — Level 2</h4><small>Original PDF · 8 pages</small></div>
-                        <a class="btn" href="./episodes/episode-3.pdf" target="_blank" rel="noopener">Read Free ↗</a>
-                    </div>
-
-                    <!-- EPISODE 4 BUTTON -->
-                    <div class="episode-row">
-                        <div><h4>Episode 4 — The Monster</h4><small>Read Episode 4</small></div>
-                        <button class="btn" type="button" onclick="openEpisode(4)">Read free ↗</button>
-                    </div>
-
-                    <!-- EPISODE 5 BUTTON -->
-                    <div class="episode-row">
-                        <div><h4>Episode 5 — The Real Bala</h4><small>Read Episode 5</small></div>
-                        <button class="btn" type="button" onclick="openEpisode(5)">Read free ↗</button>
-                    </div>
-
-                    <!-- EPISODE 6 BUTTON -->
-                    <div class="episode-row">
-                        <div><h4>Episode 6 — Find Bala Before 2:00 AM</h4><small>Read Episode 6</small></div>
-                        <button class="btn" type="button" onclick="openEpisode(6)">Read free ↗</button>
-                    </div>
-
-                    <div class="episode-row">
-                        <div><h4>Episode 7 — The Final Level</h4><small>Episode not published yet</small></div>
-                        <span class="episode-status soon">COMING SOON</span>
-                    </div>
-
-                    <div class="episode-row">
-                        <div><h4>Episode 8 — The Last Game</h4><small>Episode not published yet</small></div>
-                        <span class="episode-status soon">COMING SOON</span>
-                    </div>
-
-                    <div class="episode-row">
-                        <div><h4>Episode 9 — The Divine Entry</h4><small>Episode not published yet</small></div>
-                        <span class="episode-status soon">COMING SOON</span>
-                    </div>
-                </div>
-
-                <!-- PAGE-BY-PAGE PDF READER -->
-                <div class="reader-panel" id="readerPanel" aria-live="polite">
-                    <div class="reader-top">
-                        <div>
-                            <div class="eyebrow">Now Reading</div>
-                            <h3 id="readerTitle">Episode 1</h3>
-                        </div>
-                        <button type="button" class="reader-close" onclick="closeReader()">✕ Close Reader</button>
-                    </div>
-
-                    <div id="readerMessage" class="reader-error" style="display:none"></div>
-                    <div class="pdf-page-wrap" id="pdfPageWrap"><canvas id="pdfCanvas"></canvas></div>
-
-                    <div class="reader-controls">
-                        <button type="button" id="prevPageBtn" onclick="changePage(-1)" disabled>← Previous Page</button>
-                        <span id="pageIndicator">Page 1 / —</span>
-                        <button type="button" id="nextPageBtn" onclick="changePage(1)">Next Page →</button>
-                    </div>
-                </div>
-
-                <!-- RATING AND REVIEW -->
-                <div class="sh-reviews" id="story-reviews">
-                    <h3>⭐ Rate & Review This Story</h3>
-                    <p class="sh-review-intro">
-                        Story unakku eppadi irundhuchu? Un rating-um review-um share pannu!
-                    </p>
-
-                    <div class="sh-rating-summary">
-                        <div>
-                            <div class="sh-average" id="shAverage">0.0</div>
-                            <div class="sh-stars" id="shAverageStars">☆☆☆☆☆</div>
-                        </div>
-                        <div>
-                            <strong>Reader Rating</strong>
-                            <div class="sh-review-count" id="shReviewCount">0 reviews</div>
-                        </div>
-                    </div>
-
-                    <form class="sh-review-form" id="shReviewForm">
-                        <div>
-                            <label for="shName">Your name</label>
-                            <input id="shName" name="name" type="text"
-                                maxlength="40" placeholder="Enter your name" required>
-                        </div>
-
-                        <div>
-                            <label>Your rating</label>
-                            <div class="sh-star-picker" id="shStarPicker" aria-label="Choose a star rating">
-                                <button type="button" data-rating="1" aria-label="1 star">★</button>
-                                <button type="button" data-rating="2" aria-label="2 stars">★</button>
-                                <button type="button" data-rating="3" aria-label="3 stars">★</button>
-                                <button type="button" data-rating="4" aria-label="4 stars">★</button>
-                                <button type="button" data-rating="5" aria-label="5 stars">★</button>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="shComment">Your review</label>
-                            <textarea id="shComment" name="comment" maxlength="600"
-                                placeholder="What did you like about the story?" required></textarea>
-                        </div>
-
-                        <button class="btn sh-review-submit" type="submit">Submit Review ↗</button>
-                        <p class="sh-review-message" id="shReviewMessage" role="status"></p>
-                    </form>
-
-                    <div class="sh-review-list" id="shReviewList">
-                        <p class="sh-no-reviews">Be the first to review this story!</p>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- ABOUT -->
-        <section id="about">
-            <div class="container about-grid">
-                <div class="about-visual" aria-hidden="true">📖</div>
-
-                <div class="about-text">
-                    <div class="eyebrow">Our World</div>
-                    <h2 class="section-heading">More Than Just Stories</h2>
-
-                    <p>
-                        Idhu stories-ai virumbura readers-kaana
-                        oru pudhu platform. Different genres,
-                        interesting characters, unexpected twists
-                        ellathaiyum ore place-la kondu vara
-                        engaloda journey inga start aagudhu.
-                    </p>
-
-                    <div class="feature"><span>✦</span> Multiple story genres</div>
-                    <div class="feature"><span>✦</span> Episode-by-episode reading</div>
-                    <div class="feature"><span>✦</span> Mobile and desktop friendly</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTACT -->
-        <section id="contact">
-            <div class="container">
-                <div class="contact-box">
-                    <h2 class="section-heading">Stay Connected</h2>
-                    <p>Questions, suggestions or feedback? Official contact details will be added here.</p>
-                    <a href="#home" class="btn">Back to Home ↑</a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="container footer-content">
-            <div class="logo"><span>Story</span> Hub</div>
-            <p>© <span id="year"></span> Story Hub. All rights reserved.</p>
-            <a href="#home" class="back-top">Back to top ↑</a>
         </div>
-    </footer>
+    </section>
 
-    <script>
-        /* MOBILE MENU */
-        const menuBtn = document.getElementById("menuBtn");
-        const navLinks = document.getElementById("navLinks");
+    <section class="stories-section" id="stories">
+        <div class="container">
+            <h2 class="section-heading">Stories</h2>
+            <p class="section-description">Un next horror experience inga start aagudhu. First 3 episodes free-ah read pannalaam.</p>
 
-        menuBtn.addEventListener("click", function () {
-            const isOpen = navLinks.classList.toggle("open");
-            menuBtn.setAttribute("aria-expanded", isOpen);
-            menuBtn.setAttribute(
-                "aria-label",
-                isOpen ? "Close navigation menu" : "Open navigation menu"
-            );
+            <article class="story-card">
+                <img class="story-cover" src="./horror-cover.jpeg" alt="2:00 AM — The Final Game horror story cover">
+                <div class="story-info">
+                    <div class="eyebrow">Story Hub Original · Horror</div>
+                    <h3>2:00 AM — THE FINAL GAME</h3>
+                    <p>4 Friends. 4 Levels. 20 Lives. One Nightmare.</p>
+                    <p>Oru veedu. Oru pei. Thappikka mudiyadha oru game.</p>
+                    <a href="#episode-list" class="btn" onclick="document.getElementById('episode-list').scrollIntoView({behavior:'smooth'}); return false;">Explore Episodes ↓</a>
+                </div>
+            </article>
+
+            <div class="episode-list" id="episode-list" aria-label="Episodes">
+                <div class="episode-row">
+                    <div><h4>Episode 1 — The Game Begins</h4><small>Original PDF · 5 pages</small></div>
+                    <a class="btn" href="./episodes/episode-1.pdf" target="_blank" rel="noopener">Read Free ↗</a>
+                </div>
+                <div class="episode-row">
+                    <div><h4>Episode 2 — You Cannot Leave</h4><small>Original PDF · 5 pages</small></div>
+                    <a class="btn" href="./episodes/episode-2.pdf" target="_blank" rel="noopener">Read Free ↗</a>
+                </div>
+                <div class="episode-row">
+                    <div><h4>Episode 3 — Level 2</h4><small>Original PDF · 8 pages</small></div>
+                    <a class="btn" href="./episodes/episode-3.pdf" target="_blank" rel="noopener">Read Free ↗</a>
+                </div>
+                <div class="episode-row">
+                    <div><h4>Episode 4 — The Monster</h4><small>Read Episode 4</small></div>
+                    <button class="btn" type="button" onclick="openEpisode(4)">Read Free ↗</button>
+                </div>
+                <div class="episode-row">
+                    <div><h4>Episode 5 — The Real Bala</h4><small>Read Episode 5</small></div>
+                    <button class="btn" type="button" onclick="openEpisode(5)">Read Free ↗</button>
+                </div>
+                <div class="episode-row">
+                    <div><h4>Episode 6 — Find Bala Before 2:00 AM</h4><small>Read Episode 6</small></div>
+                    <button class="btn" type="button" onclick="openEpisode(6)">Read Free ↗</button>
+                </div>
+                <div class="episode-row">
+                    <div><h4>Episode 7 — The Final Level</h4><small>Episode not published yet</small></div>
+                    <span class="episode-status soon">COMING SOON</span>
+                </div>
+                <div class="episode-row">
+                    <div><h4>Episode 8 — The Last Game</h4><small>Episode not published yet</small></div>
+                    <span class="episode-status soon">COMING SOON</span>
+                </div>
+                <div class="episode-row">
+                    <div><h4>Episode 9 — The Divine Entry</h4><small>Episode not published yet</small></div>
+                    <span class="episode-status soon">COMING SOON</span>
+                </div>
+            </div>
+
+            <div class="reader-panel" id="readerPanel" aria-live="polite">
+                <div class="reader-top">
+                    <div><div class="eyebrow">Now Reading</div><h3 id="readerTitle">Episode 4</h3></div>
+                    <button type="button" class="reader-close" onclick="closeReader()">✕ Close Reader</button>
+                </div>
+                <div id="readerMessage" class="reader-error" style="display:none"></div>
+                <div class="pdf-page-wrap" id="pdfPageWrap"><canvas id="pdfCanvas"></canvas></div>
+                <div class="reader-controls">
+                    <button type="button" id="prevPageBtn" onclick="changePage(-1)" disabled>← Previous Page</button>
+                    <span id="pageIndicator">Page 1 / —</span>
+                    <button type="button" id="nextPageBtn" onclick="changePage(1)" disabled>Next Page →</button>
+                </div>
+            </div>
+
+            <div class="sh-reviews" id="story-reviews">
+                <h3>⭐ Rate &amp; Review This Story</h3>
+                <p class="sh-review-intro">Story unakku eppadi irundhuchu? Un rating-um review-um share pannu!</p>
+                <div class="sh-rating-summary">
+                    <div><div class="sh-average" id="shAverage">0.0</div><div class="sh-stars" id="shAverageStars">☆☆☆☆☆</div></div>
+                    <div><strong>Reader Rating</strong><div class="sh-review-count" id="shReviewCount">0 reviews</div></div>
+                </div>
+                <form class="sh-review-form" id="shReviewForm">
+                    <div><label for="shName">Your name</label><input id="shName" name="name" type="text" maxlength="40" placeholder="Enter your name" required></div>
+                    <div>
+                        <label>Your rating</label>
+                        <div class="sh-star-picker" id="shStarPicker" aria-label="Choose a star rating">
+                            <button type="button" data-rating="1" aria-label="1 star">★</button>
+                            <button type="button" data-rating="2" aria-label="2 stars">★</button>
+                            <button type="button" data-rating="3" aria-label="3 stars">★</button>
+                            <button type="button" data-rating="4" aria-label="4 stars">★</button>
+                            <button type="button" data-rating="5" aria-label="5 stars">★</button>
+                        </div>
+                    </div>
+                    <div><label for="shComment">Your review</label><textarea id="shComment" name="comment" maxlength="600" placeholder="What did you like about the story?" required></textarea></div>
+                    <button class="btn sh-review-submit" type="submit">Submit Review ↗</button>
+                    <p class="sh-review-message" id="shReviewMessage" role="status"></p>
+                </form>
+                <div class="sh-review-list" id="shReviewList"><p class="sh-no-reviews">Be the first to review this story!</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container about-grid">
+            <div class="about-visual" aria-hidden="true">📖</div>
+            <div class="about-text">
+                <div class="eyebrow">Our World</div>
+                <h2 class="section-heading">More Than Just Stories</h2>
+                <p>Idhu stories-ai virumbura readers-kaana oru pudhu platform. Different genres, interesting characters, unexpected twists ellathaiyum ore place-la kondu vara engaloda journey inga start aagudhu.</p>
+                <div class="feature"><span>✦</span> Multiple story genres</div>
+                <div class="feature"><span>✦</span> Episode-by-episode reading</div>
+                <div class="feature"><span>✦</span> Mobile and desktop friendly</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="contact-box">
+                <h2 class="section-heading">Stay Connected</h2>
+                <p>Questions, suggestions or feedback? Official contact details will be added here.</p>
+                <a href="#home" class="btn">Back to Home ↑</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container footer-content">
+        <div class="logo"><span>Story</span> Hub</div>
+        <p>© <span id="year"></span> Story Hub. All rights reserved.</p>
+        <a href="#home" class="back-top">Back to top ↑</a>
+    </div>
+</footer>
+
+<script>
+    /* MOBILE MENU */
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", function () {
+        const isOpen = navLinks.classList.toggle("open");
+        menuBtn.setAttribute("aria-expanded", isOpen);
+        menuBtn.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+    });
+
+    navLinks.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+            navLinks.classList.remove("open");
+            menuBtn.setAttribute("aria-expanded", "false");
         });
+    });
 
-        navLinks.querySelectorAll("a").forEach(function (link) {
-            link.addEventListener("click", function () {
-                navLinks.classList.remove("open");
-                menuBtn.setAttribute("aria-expanded", "false");
-            });
-        });
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-        document.getElementById("year").textContent = new Date().getFullYear();
+    /* PDF.JS READER */
+    if (window.pdfjsLib) {
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+            "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    }
 
-        /* PDF.JS READER */
-        if (window.pdfjsLib) {
-            pdfjsLib.GlobalWorkerOptions.workerSrc =
-                "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    /*
+      GitHub Pages project site:
+      https://yuvarajmunees0-debug.github.io/my--story-website/
+
+      Relative paths are resolved against the website URL.
+      PDF files must be inside the repository's episodes folder.
+    */
+    const episodeFiles = {
+        1: { title: "Episode 1 — The Game Begins", url: "./episodes/episode-1.pdf" },
+        2: { title: "Episode 2 — You Cannot Leave", url: "./episodes/episode-2.pdf" },
+        3: { title: "Episode 3 — Level 2", url: "./episodes/episode-3.pdf" },
+        4: { title: "Episode 4 — The Monster", url: "./episodes/episode-4.pdf" },
+        5: { title: "Episode 5 — The Real Bala", url: "./episodes/episode-5.pdf" },
+        6: { title: "Episode 6 — Find Bala Before 2:00 AM", url: "./episodes/episode-6.pdf" }
+    };
+
+    let currentPdf = null;
+    let currentPage = 1;
+    let renderTask = null;
+
+    async function openEpisode(number) {
+        const episode = episodeFiles[number];
+
+        if (!episode) {
+            alert("Indha episode innum available illa.");
+            return;
         }
 
-        const episodeFiles = {
-            1: { title: "Episode 1 — The Game Begins", url: "./episodes/episode-1.pdf" },
-            2: { title: "Episode 2 — You Cannot Leave", url: "./episodes/episode-2.pdf" },
-            3: { title: "Episode 3 — Level 2", url: "./episodes/episode-3.pdf" },
-            4: { title: "Episode 4 — The Monster", url: "./episodes/episode-4.pdf" },
-            5: { title: "Episode 5 — The Real Bala", url: "./episodes/episode-5.pdf" },
-            6: { title: "Episode 6 — Find Bala Before 2:00 AM", url: "./episodes/episode-6.pdf" }
-        };
+        const panel = document.getElementById("readerPanel");
+        const message = document.getElementById("readerMessage");
+        const pageWrap = document.getElementById("pdfPageWrap");
 
-        let currentPdf = null;
-        let currentPage = 1;
-        let renderTask = null;
+        panel.classList.add("visible");
+        panel.scrollIntoView({ behavior: "smooth", block: "start" });
 
-        async function openEpisode(number) {
-            const episode = episodeFiles[number];
+        document.getElementById("readerTitle").textContent = episode.title;
+        message.style.display = "none";
+        message.textContent = "";
+        pageWrap.style.display = "flex";
+        document.getElementById("pageIndicator").textContent = "Loading PDF...";
+        document.getElementById("prevPageBtn").disabled = true;
+        document.getElementById("nextPageBtn").disabled = true;
 
-            if (!episode) {
-                alert("Indha episode innum available illa.");
-                return;
+        currentPdf = null;
+
+        try {
+            if (!window.pdfjsLib) {
+                throw new Error("PDF.js library load aagala. Internet connection check pannunga.");
             }
 
-            const panel = document.getElementById("readerPanel");
-            const message = document.getElementById("readerMessage");
+            /*
+              FIX: resolve PDF path using the actual website address.
+              This works on a GitHub Pages project site too.
+            */
+            const pdfUrl = new URL(episode.url, document.baseURI).href;
 
-            panel.classList.add("visible");
-            panel.scrollIntoView({ behavior: "smooth", block: "start" });
+            const loadedPdf = await pdfjsLib.getDocument({
+                url: pdfUrl
+            }).promise;
 
-            document.getElementById("readerTitle").textContent = episode.title;
-            message.style.display = "none";
-            document.getElementById("pdfPageWrap").style.display = "flex";
-            document.getElementById("pageIndicator").textContent = "Loading PDF…";
+            currentPdf = loadedPdf;
+            currentPage = 1;
+
+            await renderPdfPage();
+
+        } catch (error) {
+            console.error("PDF loading error:", error);
+
+            pageWrap.style.display = "none";
+            message.textContent =
+                "PDF open aagala. File path: " +
+                new URL(episode.url, document.baseURI).href +
+                ". Direct link open aagudha-nu check pannunga; appuram page refresh pannunga.";
+            message.style.display = "block";
+            document.getElementById("pageIndicator").textContent = "Unable to load";
             document.getElementById("prevPageBtn").disabled = true;
             document.getElementById("nextPageBtn").disabled = true;
+        }
+    }
 
-            try {
-                if (!window.pdfjsLib) {
-                    throw new Error("PDF reader load aagala. Internet connection check pannunga.");
+    async function renderPdfPage() {
+        if (!currentPdf) return;
+
+        if (renderTask) {
+            try { renderTask.cancel(); } catch (error) {}
+            renderTask = null;
+        }
+
+        const pdfToRender = currentPdf;
+        const pageNumber = currentPage;
+        const page = await pdfToRender.getPage(pageNumber);
+
+        if (pdfToRender !== currentPdf || pageNumber !== currentPage) return;
+
+        const canvas = document.getElementById("pdfCanvas");
+        const ctx = canvas.getContext("2d");
+        const wrap = document.getElementById("pdfPageWrap");
+
+        const baseViewport = page.getViewport({ scale: 1 });
+        const maxWidth = Math.max(250, wrap.clientWidth - 20);
+        const scale = Math.min(maxWidth / baseViewport.width, 1.6);
+        const viewport = page.getViewport({ scale });
+
+        canvas.width = Math.floor(viewport.width);
+        canvas.height = Math.floor(viewport.height);
+
+        renderTask = page.render({
+            canvasContext: ctx,
+            viewport: viewport
+        });
+
+        const task = renderTask;
+        await task.promise;
+
+        if (pdfToRender !== currentPdf || pageNumber !== currentPage) return;
+
+        renderTask = null;
+
+        document.getElementById("pageIndicator").textContent =
+            "Page " + currentPage + " / " + currentPdf.numPages;
+
+        document.getElementById("prevPageBtn").disabled = currentPage <= 1;
+        document.getElementById("nextPageBtn").disabled =
+            currentPage >= currentPdf.numPages;
+    }
+
+    async function changePage(direction) {
+        if (!currentPdf) return;
+
+        const next = currentPage + direction;
+        if (next < 1 || next > currentPdf.numPages) return;
+
+        currentPage = next;
+
+        try {
+            await renderPdfPage();
+        } catch (error) {
+            if (error.name !== "RenderingCancelledException") {
+                console.error("PDF page rendering error:", error);
+            }
+        }
+    }
+
+    function closeReader() {
+        if (renderTask) {
+            try { renderTask.cancel(); } catch (error) {}
+            renderTask = null;
+        }
+
+        currentPdf = null;
+        currentPage = 1;
+        document.getElementById("readerPanel").classList.remove("visible");
+        document.getElementById("readerMessage").style.display = "none";
+    }
+
+    window.addEventListener("resize", function () {
+        if (currentPdf) {
+            renderPdfPage().catch(function (error) {
+                if (error.name !== "RenderingCancelledException") {
+                    console.error(error);
                 }
-
-                currentPdf = await pdfjsLib.getDocument(episode.url).promise;
-                currentPage = 1;
-                await renderPdfPage();
-            } catch (error) {
-                document.getElementById("pdfPageWrap").style.display = "none";
-                message.textContent =
-                    "PDF open aagala. '" + episode.url +
-                    "' file correct-ah episodes folder-la upload pannirukkingala nu check pannunga.";
-                message.style.display = "block";
-                document.getElementById("pageIndicator").textContent = "Unable to load";
-            }
-        }
-
-        async function renderPdfPage() {
-            if (!currentPdf) return;
-
-            if (renderTask) {
-                try { renderTask.cancel(); } catch (e) {}
-            }
-
-            const page = await currentPdf.getPage(currentPage);
-            const canvas = document.getElementById("pdfCanvas");
-            const ctx = canvas.getContext("2d");
-            const wrap = document.getElementById("pdfPageWrap");
-
-            const baseViewport = page.getViewport({ scale: 1 });
-            const maxWidth = Math.max(250, wrap.clientWidth - 20);
-            const scale = Math.min(maxWidth / baseViewport.width, 1.6);
-            const viewport = page.getViewport({ scale });
-
-            canvas.width = Math.floor(viewport.width);
-            canvas.height = Math.floor(viewport.height);
-
-            renderTask = page.render({ canvasContext: ctx, viewport: viewport });
-            await renderTask.promise;
-
-            document.getElementById("pageIndicator").textContent =
-                "Page " + currentPage + " / " + currentPdf.numPages;
-
-            document.getElementById("prevPageBtn").disabled = currentPage <= 1;
-            document.getElementById("nextPageBtn").disabled =
-                currentPage >= currentPdf.numPages;
-        }
-
-        async function changePage(direction) {
-            if (!currentPdf) return;
-
-            const next = currentPage + direction;
-            if (next < 1 || next > currentPdf.numPages) return;
-
-            currentPage = next;
-
-            try {
-                await renderPdfPage();
-            } catch (error) {
-                if (error.name !== "RenderingCancelledException") console.error(error);
-            }
-        }
-
-        function closeReader() {
-            document.getElementById("readerPanel").classList.remove("visible");
-            currentPdf = null;
-            currentPage = 1;
-        }
-
-        window.addEventListener("resize", function () {
-            if (currentPdf) renderPdfPage().catch(function () {});
-        });
-
-        /* RATING AND REVIEW SYSTEM
-           Reviews are saved in this browser using localStorage.
-           This does not publish reviews to every visitor's device. */
-
-        const REVIEW_STORAGE_KEY = "storyhub_horror_reviews_v1";
-        let selectedRating = 0;
-        let storyReviews = [];
-
-        function loadReviews() {
-            try {
-                const saved = localStorage.getItem(REVIEW_STORAGE_KEY);
-                const parsed = saved ? JSON.parse(saved) : [];
-                storyReviews = Array.isArray(parsed) ? parsed : [];
-            } catch (error) {
-                storyReviews = [];
-            }
-        }
-
-        function saveReviews() {
-            try {
-                localStorage.setItem(REVIEW_STORAGE_KEY, JSON.stringify(storyReviews));
-                return true;
-            } catch (error) {
-                document.getElementById("shReviewMessage").textContent =
-                    "Review save aagala. Browser storage unavailable.";
-                return false;
-            }
-        }
-
-        function updateStarPicker() {
-            document.querySelectorAll("#shStarPicker button").forEach(function (button) {
-                const rating = Number(button.dataset.rating);
-                button.classList.toggle("selected", rating <= selectedRating);
-                button.setAttribute("aria-pressed", rating === selectedRating ? "true" : "false");
             });
         }
+    });
 
+    /* RATING AND REVIEW
+       Reviews are stored locally in this browser.
+       They are not shared across every visitor's device. */
+
+    const REVIEW_STORAGE_KEY = "storyhub_horror_reviews_v1";
+    let selectedRating = 0;
+    let storyReviews = [];
+
+    function loadReviews() {
+        try {
+            const saved = localStorage.getItem(REVIEW_STORAGE_KEY);
+            const parsed = saved ? JSON.parse(saved) : [];
+            storyReviews = Array.isArray(parsed) ? parsed : [];
+        } catch (error) {
+            storyReviews = [];
+        }
+    }
+
+    function saveReviews() {
+        try {
+            localStorage.setItem(REVIEW_STORAGE_KEY, JSON.stringify(storyReviews));
+            return true;
+        } catch (error) {
+            document.getElementById("shReviewMessage").textContent =
+                "Review save aagala. Browser storage unavailable.";
+            return false;
+        }
+    }
+
+    function updateStarPicker() {
         document.querySelectorAll("#shStarPicker button").forEach(function (button) {
-            button.addEventListener("click", function () {
-                selectedRating = Number(button.dataset.rating);
-                updateStarPicker();
-                document.getElementById("shReviewMessage").textContent = "";
-            });
+            const rating = Number(button.dataset.rating);
+            button.classList.toggle("selected", rating <= selectedRating);
+            button.setAttribute("aria-pressed", rating === selectedRating ? "true" : "false");
         });
+    }
 
-        function escapeHTML(value) {
-            return String(value).replace(/[&<>"']/g, function (character) {
-                const replacements = {
-                    "&": "&amp;",
-                    "<": "&lt;",
-                    ">": "&gt;",
-                    '"': "&quot;",
-                    "'": "&#039;"
-                };
-                return replacements[character];
-            });
-        }
-
-        function renderReviews() {
-            const list = document.getElementById("shReviewList");
-            const count = storyReviews.length;
-
-            const average = count
-                ? storyReviews.reduce(function (sum, review) {
-                    return sum + Number(review.rating);
-                }, 0) / count
-                : 0;
-
-            document.getElementById("shAverage").textContent = average.toFixed(1);
-            document.getElementById("shAverageStars").textContent =
-                "★".repeat(Math.round(average)) + "☆".repeat(5 - Math.round(average));
-
-            document.getElementById("shReviewCount").textContent =
-                count + (count === 1 ? " review" : " reviews");
-
-            if (!count) {
-                list.innerHTML =
-                    '<p class="sh-no-reviews">Be the first to review this story!</p>';
-                return;
-            }
-
-            list.innerHTML = storyReviews.slice().reverse().map(function (review) {
-                const rating = Math.max(1, Math.min(5, Number(review.rating) || 1));
-
-                return `
-                    <article class="sh-review-card">
-                        <div class="sh-review-card-top">
-                            <span class="sh-review-name">${escapeHTML(review.name)}</span>
-                            <span class="sh-review-date">${escapeHTML(review.date || "")}</span>
-                        </div>
-                        <div class="sh-review-card-stars" aria-label="${rating} out of 5 stars">
-                            ${"★".repeat(rating)}${"☆".repeat(5 - rating)}
-                        </div>
-                        <p class="sh-review-text">${escapeHTML(review.comment)}</p>
-                    </article>
-                `;
-            }).join("");
-        }
-
-        document.getElementById("shReviewForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            const name = document.getElementById("shName").value.trim();
-            const comment = document.getElementById("shComment").value.trim();
-            const message = document.getElementById("shReviewMessage");
-
-            if (!name || !comment) {
-                message.textContent = "Name-um review-um enter pannu nanba.";
-                return;
-            }
-
-            if (selectedRating < 1 || selectedRating > 5) {
-                message.textContent = "First un star rating select pannu nanba.";
-                return;
-            }
-
-            const review = {
-                name: name.slice(0, 40),
-                rating: selectedRating,
-                comment: comment.slice(0, 600),
-                date: new Date().toLocaleDateString()
-            };
-
-            storyReviews.push(review);
-
-            if (!saveReviews()) {
-                storyReviews.pop();
-                return;
-            }
-
-            renderReviews();
-            this.reset();
-            selectedRating = 0;
+    document.querySelectorAll("#shStarPicker button").forEach(function (button) {
+        button.addEventListener("click", function () {
+            selectedRating = Number(button.dataset.rating);
             updateStarPicker();
-
-            message.textContent = "Thanks nanba! Un review save aagiduchu ⭐";
+            document.getElementById("shReviewMessage").textContent = "";
         });
+    });
 
-        loadReviews();
+    function escapeHTML(value) {
+        return String(value).replace(/[&<>"']/g, function (character) {
+            const replacements = {
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#039;"
+            };
+            return replacements[character];
+        });
+    }
+
+    function renderReviews() {
+        const list = document.getElementById("shReviewList");
+        const count = storyReviews.length;
+
+        const average = count
+            ? storyReviews.reduce(function (sum, review) {
+                return sum + Number(review.rating);
+            }, 0) / count
+            : 0;
+
+        document.getElementById("shAverage").textContent = average.toFixed(1);
+        document.getElementById("shAverageStars").textContent =
+            "★".repeat(Math.round(average)) + "☆".repeat(5 - Math.round(average));
+
+        document.getElementById("shReviewCount").textContent =
+            count + (count === 1 ? " review" : " reviews");
+
+        if (!count) {
+            list.innerHTML = '<p class="sh-no-reviews">Be the first to review this story!</p>';
+            return;
+        }
+
+        list.innerHTML = storyReviews.slice().reverse().map(function (review) {
+            const rating = Math.max(1, Math.min(5, Number(review.rating) || 1));
+
+            return `
+                <article class="sh-review-card">
+                    <div class="sh-review-card-top">
+                        <span class="sh-review-name">${escapeHTML(review.name)}</span>
+                        <span class="sh-review-date">${escapeHTML(review.date || "")}</span>
+                    </div>
+                    <div class="sh-review-card-stars" aria-label="${rating} out of 5 stars">
+                        ${"★".repeat(rating)}${"☆".repeat(5 - rating)}
+                    </div>
+                    <p class="sh-review-text">${escapeHTML(review.comment)}</p>
+                </article>
+            `;
+        }).join("");
+    }
+
+    document.getElementById("shReviewForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById("shName").value.trim();
+        const comment = document.getElementById("shComment").value.trim();
+        const message = document.getElementById("shReviewMessage");
+
+        if (!name || !comment) {
+            message.textContent = "Name-um review-um enter pannu nanba.";
+            return;
+        }
+
+        if (selectedRating < 1 || selectedRating > 5) {
+            message.textContent = "First un star rating select pannu nanba.";
+            return;
+        }
+
+        const review = {
+            name: name.slice(0, 40),
+            rating: selectedRating,
+            comment: comment.slice(0, 600),
+            date: new Date().toLocaleDateString()
+        };
+
+        storyReviews.push(review);
+
+        if (!saveReviews()) {
+            storyReviews.pop();
+            return;
+        }
+
         renderReviews();
+        this.reset();
+        selectedRating = 0;
         updateStarPicker();
-    </script>
+
+        message.textContent = "Thanks nanba! Un review save aagiduchu ⭐";
+    });
+
+    loadReviews();
+    renderReviews();
+    updateStarPicker();
+</script>
 </body>
 </html>
