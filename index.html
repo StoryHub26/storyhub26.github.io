@@ -913,5 +913,282 @@
         });
     </script>
 
+    
+<!-- STORY HUB: EPISODE LINKS -->
+<section id="episodes" class="sh-section">
+  <h2>THE STORY FILES</h2>
+  <p>Choose an episode and enter the game.</p>
+
+  <div class="sh-episodes">
+    <a href="episodes/episode1.pdf" target="_blank">EPISODE 01 ↗</a>
+    <a href="episodes/episode2.pdf" target="_blank">EPISODE 02 ↗</a>
+    <a href="episodes/episode3.pdf" target="_blank">EPISODE 03 ↗</a>
+    <a href="episodes/episode4.pdf" target="_blank">EPISODE 04 ↗</a>
+    <a href="episodes/episode5.pdf" target="_blank">EPISODE 05 ↗</a>
+    <a href="episodes/episode6.pdf" target="_blank">EPISODE 06 ↗</a>
+  </div>
+</section>
+
+<!-- STORY HUB: REVIEW & RATING -->
+<section id="reviews" class="sh-section">
+  <h2>READER'S VERDICT</h2>
+  <p>Rate the story. Share your thoughts.</p>
+
+  <div class="sh-rating-card">
+    <div class="sh-average">
+      <span id="sh-average">0.0</span>
+      <span class="sh-stars" id="sh-average-stars">☆☆☆☆☆</span>
+      <small id="sh-count">0 reviews</small>
+    </div>
+
+    <form id="sh-review-form">
+      <label for="sh-name">Your name</label>
+      <input id="sh-name" maxlength="40"
+             placeholder="Enter your name" required>
+
+      <label>Your rating</label>
+      <div class="sh-pick-stars" id="sh-pick-stars">
+        <button type="button" data-star="1" aria-label="1 star">☆</button>
+        <button type="button" data-star="2" aria-label="2 stars">☆</button>
+        <button type="button" data-star="3" aria-label="3 stars">☆</button>
+        <button type="button" data-star="4" aria-label="4 stars">☆</button>
+        <button type="button" data-star="5" aria-label="5 stars">☆</button>
+      </div>
+
+      <label for="sh-comment">Your review</label>
+      <textarea id="sh-comment" maxlength="500"
+                placeholder="What did you think about the story?"
+                required></textarea>
+
+      <button class="sh-submit" type="submit">SUBMIT REVIEW</button>
+      <p id="sh-message" aria-live="polite"></p>
+    </form>
+  </div>
+
+  <h3>WHAT READERS THINK</h3>
+  <div id="sh-review-list"></div>
+</section>
+
+<style>
+.sh-section {
+  max-width: 900px;
+  margin: 55px auto;
+  padding: 24px;
+  color: #f4f0e8;
+  font-family: Arial, sans-serif;
+}
+.sh-section h2 {
+  color: #d8b45a;
+  letter-spacing: 3px;
+}
+.sh-section h3 {
+  margin-top: 30px;
+  color: #d8b45a;
+}
+.sh-episodes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-top: 24px;
+}
+.sh-episodes a {
+  padding: 16px 10px;
+  border: 1px solid #80672f;
+  color: #e5c46b;
+  text-decoration: none;
+  text-align: center;
+  background: #111;
+  border-radius: 8px;
+}
+.sh-episodes a:hover {
+  background: #2a2110;
+  border-color: #e5c46b;
+}
+.sh-rating-card, .sh-review-item {
+  background: #111;
+  border: 1px solid #393124;
+  border-radius: 12px;
+  padding: 22px;
+  margin-top: 18px;
+}
+.sh-average {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 25px;
+}
+#sh-average {
+  font-size: 42px;
+  color: #e5c46b;
+}
+.sh-stars, .sh-review-stars {
+  color: #e5c46b;
+  letter-spacing: 3px;
+}
+#sh-review-form label {
+  display: block;
+  margin: 16px 0 8px;
+}
+#sh-review-form input, #sh-review-form textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  color: #fff;
+  background: #080808;
+  border: 1px solid #51452e;
+  border-radius: 6px;
+  font: inherit;
+}
+#sh-review-form textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+.sh-pick-stars button {
+  padding: 4px;
+  border: 0;
+  background: transparent;
+  color: #e5c46b;
+  font-size: 32px;
+  cursor: pointer;
+}
+.sh-submit {
+  margin-top: 18px;
+  padding: 13px 18px;
+  background: #d8b45a;
+  color: #111;
+  border: 0;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.sh-review-item p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+#sh-message { color: #e5c46b; }
+</style>
+
+<script>
+(() => {
+  const storageKey = "storyhub_reader_reviews_v1";
+  const form = document.getElementById("sh-review-form");
+  const starButtons = document.querySelectorAll(
+    "#sh-pick-stars button"
+  );
+  const message = document.getElementById("sh-message");
+  let selectedRating = 0;
+
+  // This demo saves reviews only in this browser.
+  function getReviews() {
+    try {
+      return JSON.parse(localStorage.getItem(storageKey) || "[]");
+    } catch {
+      return [];
+    }
+  }
+
+  function chooseRating(value) {
+    selectedRating = value;
+    starButtons.forEach(button => {
+      const active = Number(button.dataset.star) <= value;
+      button.textContent = active ? "★" : "☆";
+      button.setAttribute("aria-pressed", String(
+        Number(button.dataset.star) === value
+      ));
+    });
+  }
+
+  starButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      chooseRating(Number(button.dataset.star));
+    });
+  });
+
+  function renderReviews() {
+    const reviews = getReviews();
+    const average = reviews.length
+      ? reviews.reduce((sum, item) => sum + item.rating, 0)
+        / reviews.length
+      : 0;
+
+    document.getElementById("sh-average").textContent =
+      average.toFixed(1);
+    document.getElementById("sh-average-stars").textContent =
+      "★".repeat(Math.round(average)) +
+      "☆".repeat(5 - Math.round(average));
+    document.getElementById("sh-count").textContent =
+      reviews.length + (reviews.length === 1 ? " review" : " reviews");
+
+    const list = document.getElementById("sh-review-list");
+    list.replaceChildren();
+
+    if (!reviews.length) {
+      const empty = document.createElement("p");
+      empty.textContent = "Be the first to review this story.";
+      list.appendChild(empty);
+      return;
+    }
+
+    reviews.slice().reverse().forEach(review => {
+      const card = document.createElement("article");
+      card.className = "sh-review-item";
+
+      const name = document.createElement("strong");
+      name.textContent = review.name;
+
+      const stars = document.createElement("div");
+      stars.className = "sh-review-stars";
+      stars.textContent = "★".repeat(review.rating) +
+        "☆".repeat(5 - review.rating);
+
+      const comment = document.createElement("p");
+      comment.textContent = review.comment;
+
+      card.append(name, stars, comment);
+      list.appendChild(card);
+    });
+  }
+
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+
+    if (!selectedRating) {
+      message.textContent = "Please select a star rating first.";
+      return;
+    }
+
+    const name = document.getElementById("sh-name").value.trim();
+    const comment = document.getElementById("sh-comment").value.trim();
+
+    if (!name || !comment) {
+      message.textContent = "Please fill in both fields.";
+      return;
+    }
+
+    const reviews = getReviews();
+    reviews.push({
+      name,
+      rating: selectedRating,
+      comment
+    });
+
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(reviews));
+      form.reset();
+      chooseRating(0);
+      message.textContent = "Review saved in this browser.";
+      renderReviews();
+    } catch {
+      message.textContent =
+        "Could not save the review in this browser.";
+    }
+  });
+
+  renderReviews();
+})();
+</script>
+
+
 </body>
 </html>
