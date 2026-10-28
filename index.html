@@ -324,6 +324,14 @@
 
         .episode-status.soon { background: #303846; color: #c2cad6; }
 
+        /* Keep the original homepage visible. Open the horror story only after Horror is clicked. */
+        #stories { display: none; }
+        .episode-list { display: none; }
+        .episode-list.visible { display: grid; }
+        .genre-page-actions { margin: 0 0 22px; display: flex; gap: 12px; flex-wrap: wrap; }
+        .genre-notice { color: var(--muted); margin-top: 18px; min-height: 24px; }
+        #story-reviews { display: none; }
+
         .reader-panel {
             display: none;
             margin-top: 30px;
@@ -538,14 +546,14 @@
 <body>
 <header>
     <div class="container navbar">
-        <a href="#home" class="logo"><span>Story</span> Hub</a>
+        <a href="#home" class="logo" onclick="backToHome(); return false;"><span>Story</span> Hub</a>
         <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks" aria-label="Open navigation menu">☰ Menu</button>
         <nav class="nav-links" id="navLinks">
-            <a href="#home" class="active">Home</a>
-            <a href="#genres">Genres</a>
-            <a href="#stories">Stories</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+            <a href="#home" class="active" onclick="backToHome(); return false;">Home</a>
+            <a href="#genres" onclick="backToGenres(); return false;">Genres</a>
+            <a href="#stories" onclick="openHorrorGenre(); return false;">Stories</a>
+            <a href="#about" onclick="backToHome(); setTimeout(() => document.getElementById('about').scrollIntoView({behavior:'smooth'}), 80); return false;">About</a>
+            <a href="#contact" onclick="backToHome(); setTimeout(() => document.getElementById('contact').scrollIntoView({behavior:'smooth'}), 80); return false;">Contact</a>
         </nav>
     </div>
 </header>
@@ -556,7 +564,7 @@
             <div class="hero-brand">STORY <span>HUB</span></div>
             <div class="eyebrow">A World of Imagination</div>
             <h1>Every Story Has<br><span>A New Beginning.</span></h1>
-            <a href="#stories" class="btn">Explore Stories →</a>
+            <a href="#genres" class="btn">Explore Stories →</a>
         </div>
     </section>
 
@@ -564,20 +572,24 @@
         <div class="container">
             <h2 class="section-heading">Explore Genres</h2>
             <div class="genre-grid">
-                <a href="#stories" class="genre-card"><span class="genre-icon">🔍</span><h3>Crime &amp; Thriller</h3></a>
-                <a href="#stories" class="genre-card"><span class="genre-icon">❤️</span><h3>Romance</h3></a>
-                <a href="#stories" class="genre-card"><span class="genre-icon">🐉</span><h3>Fantasy</h3></a>
-                <a href="#stories" class="genre-card" aria-label="Explore horror stories"><span class="genre-icon">👻</span><h3>Horror</h3></a>
-                <a href="#stories" class="genre-card"><span class="genre-icon">👁️</span><h3>Mystery</h3></a>
-                <a href="#stories" class="genre-card"><span class="genre-icon">⚔️</span><h3>Adventure</h3></a>
-                <a href="#stories" class="genre-card"><span class="genre-icon">😂</span><h3>Comedy</h3></a>
+                <a href="#genres" class="genre-card" onclick="showGenreComingSoon('Crime &amp; Thriller'); return false;"><span class="genre-icon">🔍</span><h3>Crime &amp; Thriller</h3></a>
+                <a href="#genres" class="genre-card" onclick="showGenreComingSoon('Romance'); return false;"><span class="genre-icon">❤️</span><h3>Romance</h3></a>
+                <a href="#genres" class="genre-card" onclick="showGenreComingSoon('Fantasy'); return false;"><span class="genre-icon">🐉</span><h3>Fantasy</h3></a>
+                <a href="#genres" class="genre-card" aria-label="Explore horror stories" onclick="openHorrorGenre(); return false;"><span class="genre-icon">👻</span><h3>Horror</h3></a>
+                <a href="#genres" class="genre-card" onclick="showGenreComingSoon('Mystery'); return false;"><span class="genre-icon">👁️</span><h3>Mystery</h3></a>
+                <a href="#genres" class="genre-card" onclick="showGenreComingSoon('Adventure'); return false;"><span class="genre-icon">⚔️</span><h3>Adventure</h3></a>
+                <a href="#genres" class="genre-card" onclick="showGenreComingSoon('Comedy'); return false;"><span class="genre-icon">😂</span><h3>Comedy</h3></a>
             </div>
+            <p class="genre-notice" id="genreNotice" role="status"></p>
         </div>
     </section>
 
     <section class="stories-section" id="stories">
         <div class="container">
-            <h2 class="section-heading">Stories</h2>
+            <div class="genre-page-actions">
+                <button type="button" class="btn outline-btn" onclick="backToGenres()">← Back to Genres</button>
+            </div>
+            <h2 class="section-heading">Horror Stories</h2>
 
             <article class="story-card">
                 <img class="story-cover" src="./horror-cover.jpeg" alt="2:00 AM — The Final Game horror story cover">
@@ -585,11 +597,11 @@
                     <div class="eyebrow">Story Hub Original · Horror</div>
                     <h3>2:00 AM — THE FINAL GAME</h3>
                     <p>4 Friends. 4 Levels. 20 Lives. One Nightmare.</p>
-                    <a href="#episode-list" class="btn" onclick="document.getElementById('episode-list').scrollIntoView({behavior:'smooth'}); return false;">Explore Episodes ↓</a>
+                    <button type="button" class="btn" id="exploreEpisodesBtn" aria-expanded="false" onclick="toggleEpisodes()">Explore Episodes ↓</button>
                 </div>
             </article>
 
-            <div class="episode-list" id="episode-list" aria-label="Episodes">
+            <div class="episode-list" id="episode-list" aria-label="Episodes" aria-hidden="true">
                 <div class="episode-row">
                     <div><h4>Episode 1 — The Game Begins</h4><small>Original PDF · 5 pages</small></div>
                     <a class="btn" href="./episodes/episode-1.pdf" target="_blank" rel="noopener">Read Free ↗</a>
@@ -708,6 +720,58 @@
 </footer>
 
 <script>
+    /* HOMEPAGE / GENRE / STORY NAVIGATION */
+    function openHorrorGenre() {
+        document.getElementById("home").style.display = "none";
+        document.getElementById("genres").style.display = "none";
+        document.getElementById("about").style.display = "none";
+        document.getElementById("contact").style.display = "none";
+        document.getElementById("stories").style.display = "block";
+        document.getElementById("genreNotice").textContent = "";
+        document.getElementById("episode-list").classList.remove("visible");
+        document.getElementById("episode-list").setAttribute("aria-hidden", "true");
+        document.getElementById("exploreEpisodesBtn").setAttribute("aria-expanded", "false");
+        document.getElementById("exploreEpisodesBtn").textContent = "Explore Episodes ↓";
+        document.getElementById("readerPanel").classList.remove("visible");
+        document.getElementById("story-reviews").style.display = "none";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function toggleEpisodes() {
+        const list = document.getElementById("episode-list");
+        const button = document.getElementById("exploreEpisodesBtn");
+        const isOpen = list.classList.toggle("visible");
+        list.setAttribute("aria-hidden", String(!isOpen));
+        button.setAttribute("aria-expanded", String(isOpen));
+        button.textContent = isOpen ? "Hide Episodes ↑" : "Explore Episodes ↓";
+        document.getElementById("story-reviews").style.display = isOpen ? "block" : "none";
+        if (isOpen) {
+            setTimeout(function () { list.scrollIntoView({ behavior: "smooth", block: "start" }); }, 80);
+        }
+    }
+
+    function backToGenres() {
+        closeReader();
+        document.getElementById("stories").style.display = "none";
+        document.getElementById("home").style.display = "flex";
+        document.getElementById("genres").style.display = "block";
+        document.getElementById("about").style.display = "block";
+        document.getElementById("contact").style.display = "block";
+        document.getElementById("episode-list").classList.remove("visible");
+        document.getElementById("episode-list").setAttribute("aria-hidden", "true");
+        document.getElementById("story-reviews").style.display = "none";
+        document.getElementById("genreNotice").textContent = "";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function backToHome() {
+        backToGenres();
+    }
+
+    function showGenreComingSoon(genre) {
+        document.getElementById("genreNotice").textContent = genre + " stories coming soon!";
+    }
+
     /* MOBILE MENU */
     const menuBtn = document.getElementById("menuBtn");
     const navLinks = document.getElementById("navLinks");
@@ -735,7 +799,7 @@
 
     /*
       GitHub Pages project site:
-      https://yuvarajmunees0-debug.github.io/my--story-website/
+      https://storyhub26.github.io/
 
       Relative paths are resolved against the website URL.
       PDF files must be inside the repository's episodes folder.
