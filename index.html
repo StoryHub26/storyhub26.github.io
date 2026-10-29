@@ -199,6 +199,47 @@
             border-bottom: 1px solid #171e29;
         }
 
+
+        /* UPCOMING STORY CARD — VELMORA: THE HEIST */
+        .upcoming-section {
+            background: #080b10;
+            border-top: 1px solid #171e29;
+        }
+
+        .upcoming-card {
+            overflow: hidden;
+            border: 1px solid var(--gold);
+            border-radius: 14px;
+            background: #050608;
+            box-shadow: 0 0 24px rgba(255,189,74,.08);
+        }
+
+        .upcoming-card img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .upcoming-caption {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 16px 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .upcoming-caption strong {
+            color: var(--gold);
+            letter-spacing: 1px;
+        }
+
+        .upcoming-caption span {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
         .empty-state {
             background: var(--panel);
             border: 1px dashed #3b4657;
@@ -581,6 +622,22 @@
                 <a href="#genres" class="genre-card" onclick="showGenreComingSoon('Comedy'); return false;"><span class="genre-icon">😂</span><h3>Comedy</h3></a>
             </div>
             <p class="genre-notice" id="genreNotice" role="status"></p>
+        </div>
+    </section>
+
+
+    <section class="upcoming-section" id="upcoming">
+        <div class="container">
+            <div class="eyebrow">Coming Soon</div>
+            <h2 class="section-heading">Upcoming Stories</h2>
+            <p class="section-description">Our next original story is on the way.</p>
+            <article class="upcoming-card">
+                <img src="./velmora-heist-card.png" alt="VELMORA: THE HEIST — Coming Soon. Crime, Heist, Thriller manhwa." loading="lazy">
+                <div class="upcoming-caption">
+                    <strong>VELMORA: THE HEIST</strong>
+                    <span>· Crime · Heist · Thriller</span>
+                </div>
+            </article>
         </div>
     </section>
 
