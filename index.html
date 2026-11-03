@@ -582,6 +582,7 @@
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -1019,34 +1020,20 @@
         }
     });
 
-    /* RATING AND REVIEW
-       Reviews are stored locally in this browser.
-       They are not shared across every visitor's device. */
+    /* RATING AND REVIEW — SUPABASE DATABASE CONNECTION
+       Only this review connection is changed. The existing review design is preserved. */
 
-    const REVIEW_STORAGE_KEY = "storyhub_horror_reviews_v1";
+    const SUPABASE_URL = "https://jaypsuwcygjhmggezsvv.supabase.co";
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_c4jMND6RFwNApkZGW5tz6A_srEsf-i";
+    const STORY_NAME = "2:00 AM — THE FINAL GAME";
+
+    const supabaseClient = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
+
     let selectedRating = 0;
     let storyReviews = [];
-
-    function loadReviews() {
-        try {
-            const saved = localStorage.getItem(REVIEW_STORAGE_KEY);
-            const parsed = saved ? JSON.parse(saved) : [];
-            storyReviews = Array.isArray(parsed) ? parsed : [];
-        } catch (error) {
-            storyReviews = [];
-        }
-    }
-
-    function saveReviews() {
-        try {
-            localStorage.setItem(REVIEW_STORAGE_KEY, JSON.stringify(storyReviews));
-            return true;
-        } catch (error) {
-            document.getElementById("shReviewMessage").textContent =
-                "Review save aagala. Browser storage unavailable.";
-            return false;
-        }
-    }
 
     function updateStarPicker() {
         document.querySelectorAll("#shStarPicker button").forEach(function (button) {
@@ -1099,27 +1086,56 @@
             return;
         }
 
-        list.innerHTML = storyReviews.slice().reverse().map(function (review) {
+        list.innerHTML = storyReviews.map(function (review) {
             const rating = Math.max(1, Math.min(5, Number(review.rating) || 1));
+            const reviewDate = review.created_at
+                ? new Date(review.created_at).toLocaleDateString()
+                : "";
 
             return `
                 <article class="sh-review-card">
                     <div class="sh-review-card-top">
-                        <span class="sh-review-name">${escapeHTML(review.name)}</span>
-                        <span class="sh-review-date">${escapeHTML(review.date || "")}</span>
+                        <span class="sh-review-name">${escapeHTML(review.username || "")}</span>
+                        <span class="sh-review-date">${escapeHTML(reviewDate)}</span>
                     </div>
                     <div class="sh-review-card-stars" aria-label="${rating} out of 5 stars">
                         ${"★".repeat(rating)}${"☆".repeat(5 - rating)}
                     </div>
-                    <p class="sh-review-text">${escapeHTML(review.comment)}</p>
+                    <p class="sh-review-text">${escapeHTML(review.review || "")}</p>
                 </article>
             `;
         }).join("");
     }
 
-    document.getElementById("shReviewForm").addEventListener("submit", function (event) {
+    async function loadReviews() {
+        const message = document.getElementById("shReviewMessage");
+        const list = document.getElementById("shReviewList");
+
+        list.innerHTML = '<p class="sh-no-reviews">Loading reviews...</p>';
+
+        const { data, error } = await supabaseClient
+            .from("reviews")
+            .select("id, created_at, story_name, username, rating, review")
+            .eq("story_name", STORY_NAME)
+            .order("created_at", { ascending: false });
+
+        if (error) {
+            console.error("Supabase review loading error:", error);
+            storyReviews = [];
+            renderReviews();
+            message.textContent = "Reviews load aagala. Konjam neram kazhithu try pannunga.";
+            return;
+        }
+
+        storyReviews = data || [];
+        renderReviews();
+    }
+
+    document.getElementById("shReviewForm").addEventListener("submit", async function (event) {
         event.preventDefault();
 
+        const form = this;
+        const submitButton = form.querySelector('button[type="submit"]');
         const name = document.getElementById("shName").value.trim();
         const comment = document.getElementById("shComment").value.trim();
         const message = document.getElementById("shReviewMessage");
@@ -1134,31 +1150,38 @@
             return;
         }
 
-        const review = {
-            name: name.slice(0, 40),
+        const reviewToSave = {
+            story_name: STORY_NAME,
+            username: name.slice(0, 40),
             rating: selectedRating,
-            comment: comment.slice(0, 600),
-            date: new Date().toLocaleDateString()
+            review: comment.slice(0, 600)
         };
 
-        storyReviews.push(review);
+        submitButton.disabled = true;
+        message.textContent = "Review save aagudhu...";
 
-        if (!saveReviews()) {
-            storyReviews.pop();
+        const { error } = await supabaseClient
+            .from("reviews")
+            .insert(reviewToSave);
+
+        submitButton.disabled = false;
+
+        if (error) {
+            console.error("Supabase review insert error:", error);
+            message.textContent = "Review save aagala. Please try again.";
             return;
         }
 
-        renderReviews();
-        this.reset();
+        form.reset();
         selectedRating = 0;
         updateStarPicker();
 
         message.textContent = "Thanks nanba! Un review save aagiduchu ⭐";
+        await loadReviews();
     });
 
-    loadReviews();
-    renderReviews();
     updateStarPicker();
+    loadReviews();
 </script>
 </body>
 </html>
